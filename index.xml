@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rob Coleman</title>
+    <link>https://colemanrob.github.io/</link>
+    <description>Recent content on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2017 Rob Coleman</copyright>
+    <lastBuildDate>Fri, 25 Aug 2017 11:01:19 -0400</lastBuildDate>
+    
+	<atom:link href="https://colemanrob.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using rvest to scrape National Occupation Codes</title>
+      <link>https://colemanrob.github.io/blog/using-rvest-to-scrape-national-occupation-codes/</link>
+      <pubDate>Fri, 25 Aug 2017 11:01:19 -0400</pubDate>
+      
+      <guid>https://colemanrob.github.io/blog/using-rvest-to-scrape-national-occupation-codes/</guid>
+      <description>At work, I&amp;rsquo;m always looking for a list of National Occupation Codes and their descriptions. I realized I can probably scrape this information faster than I can find it on my team&amp;rsquo;s network drive thanks to rvest and the tidyverse.
+Libraries:
+library(tidyverse) # make tidy library(rvest) # scrape data library(knitr) # make a table  Read in the appropriate list of NOCs:
+nocs &amp;lt;- read_html(&amp;quot;http://noc.esdc.gc.ca/English/NOC/QuickSearch.aspx?ver=16&amp;amp;val65=*&amp;quot;)  Parse the HTML into a list then a file:</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://colemanrob.github.io/about/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://colemanrob.github.io/about/</guid>
+      <description>Hi, I&amp;rsquo;m Rob a government researcher in the field of employment and training.
+I studied political science and other fun subjects in school. Now I spend a lot of time analyzing data using #rstats and building things on the web.
+I live in the frozen Canadian north with my wife and this guy:
+ Barn yard!
+A post shared by Rob (@robcoleman) on Aug 24, 2017 at 3:04pm PDT
+  Let&amp;rsquo;s be friends!</description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>https://colemanrob.github.io/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://colemanrob.github.io/home/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://colemanrob.github.io/license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://colemanrob.github.io/license/</guid>
+      <description>You can use this page to put a license on the contents of your blog, like so:
+ The MIT License (MIT)
+Copyright &amp;copy; 2015 Nishanth Shanmughamnishanth.gerrard@gmail.com
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
+    </item>
+    
+  </channel>
+</rss>
