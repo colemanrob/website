@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Rob Coleman</title>
-    <link>https://robcoleman.netlify.com/categories/</link>
+    <link>https://robcoleman.ca/categories/</link>
     <description>Recent content in Categories on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2017 Rob Coleman</copyright>
     
-	<atom:link href="https://robcoleman.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
