@@ -2,7 +2,6 @@
 <html lang="en-US">
 
 <head>
-	<meta name="generator" content="Hugo 0.31.1" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -16,24 +15,24 @@
 <meta property="og:site_name" content="Rob Coleman" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robcoleman.ca/" />
-<meta property="og:title" content="Rob Coleman" />
-<meta property="twitter:title" content="Rob Coleman">
+<meta property="og:url" content="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/" />
+<meta property="og:title" content="Scraping Restaurant Health Inspections" />
+<meta property="twitter:title" content="Scraping Restaurant Health Inspections">
 
-    <meta property="og:image" content="https://robcoleman.ca/img/banner.png">
+    <meta property="og:image" content="https://robcoleman.ca//img/resto2.png">
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:image" content="https://robcoleman.ca/img/banner.png">
+    <meta property="twitter:image" content="https://robcoleman.ca//img/resto2.png">
 
-<meta property="og:description" content="A web notebook">
-<meta property="twitter:description" content="A web notebook">
+<meta property="og:description" content="using rvest to scape restaurant inspection data">
+<meta property="twitter:description" content="using rvest to scape restaurant inspection data">
 
 <title>
 
 
-    Rob Coleman
+     Rob Coleman - Scraping Restaurant Health Inspections 
 
 </title>
-<link rel="canonical" href="https://robcoleman.ca/">
+<link rel="canonical" href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/">
 
 
 <style media="screen">
@@ -1039,8 +1038,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://robcoleman.ca/index.xml" rel="alternate" type="application/rss+xml" title="Rob Coleman" />
-
 
 </head>
 
@@ -1048,7 +1045,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         <a href="https://robcoleman.ca/"><img class="logo" src="https://robcoleman.ca/img/logo.png" alt="logo" /></a>
@@ -1079,54 +1076,183 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
-<div class="main column">
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Scraping Restaurant Health Inspections
+
+</div>
+
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Tue Dec 5 2017 22:24:48 EST">Dec 5, 2017</div>
                     
-                        <li class="groupby">Dec, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 5, 2017</span>
-    <a href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/"><span>Scraping Restaurant Health Inspections</span></a>
-</li>
-
                         
                     
-                        <li class="groupby">Aug, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Aug 25, 2017</span>
-    <a href="https://robcoleman.ca/blog/using-rvest-to-scrape-national-occupation-codes/"><span>Using rvest to scrape National Occupation Codes</span></a>
-</li>
-
-                        
-                    
-                    </ul>
-
-                    
-                
+                    <div class="reading-time middot">3 minute read</div>
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p><a href="http://www.algomapublichealth.com/">Algoma Public Health</a> is the public health agency in my area that inspects restaurants to ensure they are abiding by all the relevant food safety legislation. They are also nice enough to publish their <a href="http://www.algomapublichealth.com/inspections-environment/food-safety/restaurant-inspection-reports/">restaurant health inspection reports</a> online for anyone to review.</p>
+
+<p>I searched for a few restaurants that I frequent (phew <a href="https://goo.gl/maps/rqj5goqwqeT2">Fratellis</a> is safe!) but then I wanted to know <strong>which restaurants had the most health infractions?</strong></p>
+
+<p>Their website isn&rsquo;t setup to answer that kind of question. Each inspection report is published as a unique page on their website which makes aggregating and comparing difficult.</p>
+
+<p>I used <code>rvest</code> to scrape the URLs of all the reports APH published. Then I scraped the contents of the reports so that I could create a dataset that would allow me to aggregate and compare the results (the dataset and code <a href="https://github.com/colemanrob/restoscrape/tree/master/data">available here</a>.)</p>
+
+<h2 id="restaurants-with-the-most-infractions">Restaurants with the most infractions</h2>
+
+<p>Of the 90% of restaurants who received three visits, here are the top 5 in terms of total number of infractions:</p>
+
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://robcoleman.ca/img/resto1.png" src="https://robcoleman.ca/img/low/resto1.png" alt="" /></p></figure>
+
+<p>Surprising results. Upper Deck has some <a href="http://www.algomapublichealth.com/inspections-environment/food-safety/restaurant-inspection-reports/?id=7e880c25-6cd5-4e01-bcf4-7ad707ae166f">particularly bad</a> health infractions.</p>
+
+<p>But that got me thinking&ndash;not all infractions are equal. Some are minor and are corrected onsite. Some are more serious and others still are downright strange. Let&rsquo;s take a closer look.</p>
+
+<h2 id="number-of-infractions">Number of infractions</h2>
+
+<p>Here are the top 10 infractions by frequency, meaning these infractions appear most often in the dataset.</p>
+
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://robcoleman.ca/img/resto2.png" src="https://robcoleman.ca/img/low/resto2.png" alt="" /></p></figure>
+
+<h2 id="stranger-infractions">Stranger Infractions</h2>
+
+<p>The infractions that don&rsquo;t appear frequently are also quite interesting. Here are infractions that only appear once in the dataset, but leave me with more questions than answers.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Restaurant</th>
+<th align="left">Address</th>
+<th align="left">Date</th>
+<th align="left">Infraction</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Juicy Beatz &amp; Healthy Eatz</td>
+<td align="left">235 McNabb Street</td>
+<td align="left">2017-08-23</td>
+<td align="left">Food handler hygiene</td>
+</tr>
+
+<tr>
+<td align="left">Pauline&rsquo;s Place</td>
+<td align="left">923 Queen Street</td>
+<td align="left">2017-11-28</td>
+<td align="left">Only Grade A or B eggs permitted</td>
+</tr>
+
+<tr>
+<td align="left">Queen West Variety</td>
+<td align="left">602 Queen Street</td>
+<td align="left">2016-12-16</td>
+<td align="left">Exclusion of live animals on the premises, subject to exemptions</td>
+</tr>
+
+<tr>
+<td align="left">Roberta Bondar Pavilion Serving Kitchens</td>
+<td align="left">65 Foster Dr</td>
+<td align="left">2016-08-30</td>
+<td align="left">No room with food used for sleeping purposes</td>
+</tr>
+
+<tr>
+<td align="left">Teen Challenge Kitchen</td>
+<td align="left">1446 Great Northern Road</td>
+<td align="left">2016-12-13</td>
+<td align="left">Uninspected meats obtained through hunting: only for custom cutting, wash/rinse/sanitize equipment after use as prescribed</td>
+</tr>
+</tbody>
+</table>
+
+<p>Questions that come to mind:</p>
+
+<ul>
+<li>who&rsquo;s sleeping in the Pavilion?</li>
+<li>did the Teen Challenge involve catching your meal?</li>
+<li>what kind of animals are hanging out in Queen West Variety?</li>
+<li>how does one tell the grade of eggs? Can you do it just by looking?</li>
+</ul>
+
+<p>What does this data tell us? Not too much really :)</p>
+
+<p>I hope you enjoyed this peek behind the health inspection curtain. The dataset and code are <a href="https://github.com/colemanrob/restoscrape/tree/master/data">available here</a>. If you have any questions or comments, please feel free to <a href="https://twitter.com/coleman">get in touch</a>.</p>
+
+
+                <br>
+            </div>
+            
+            <div class="share">
+                <a href="" class="ssk ssk-facebook"></a>
+                <a href="" class="ssk ssk-twitter"></a>
+                <a href="" class="ssk ssk-google-plus"></a>
+                <a href="" class="ssk ssk-linkedin"></a>
+            </div>
+            
+            
+                <div class="navigation">
+                    
+                    <div>
+                        <img class="icon" src="https://robcoleman.ca/img/back.svg" alt="back" />
+                        <a href="https://robcoleman.ca/blog/using-rvest-to-scrape-national-occupation-codes/">Using rvest to scrape National Occupation Codes</a>
+                    </div>
+                    
+                    <div style="width: 100%;"></div>
+                    
+                </div>
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "robcoleman" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
         </div>
     </div>
 </div>
+
 <div class="footer column">
     <div class="container">
 

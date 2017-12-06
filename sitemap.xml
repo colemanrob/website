@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://robcoleman.ca/blog/scraping-restaurant-health-inspections/</loc>
+    <lastmod>2017-12-05T22:24:48-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://robcoleman.ca/blog/using-rvest-to-scrape-national-occupation-codes/</loc>
     <lastmod>2017-08-25T11:01:19-04:00</lastmod>
   </url>
@@ -14,7 +19,7 @@
   
   <url>
     <loc>https://robcoleman.ca/blog/</loc>
-    <lastmod>2017-08-25T11:01:19-04:00</lastmod>
+    <lastmod>2017-12-05T22:24:48-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -33,7 +38,7 @@
   
   <url>
     <loc>https://robcoleman.ca/</loc>
-    <lastmod>2017-08-25T11:01:19-04:00</lastmod>
+    <lastmod>2017-12-05T22:24:48-05:00</lastmod>
     <priority>0</priority>
   </url>
   
