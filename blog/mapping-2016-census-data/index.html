@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Rob Coleman" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robcoleman.ca/blog/" />
-<meta property="og:title" content="Blog" />
-<meta property="twitter:title" content="Blog">
+<meta property="og:url" content="https://robcoleman.ca/blog/mapping-2016-census-data/" />
+<meta property="og:title" content="Mapping 2016 Census Data" />
+<meta property="twitter:title" content="Mapping 2016 Census Data">
 
     <meta property="og:image" content="https://robcoleman.ca/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -29,10 +29,10 @@
 <title>
 
 
-     Rob Coleman - Blog 
+     Rob Coleman - Mapping 2016 Census Data 
 
 </title>
-<link rel="canonical" href="https://robcoleman.ca/blog/">
+<link rel="canonical" href="https://robcoleman.ca/blog/mapping-2016-census-data/">
 
 
 <style media="screen">
@@ -1038,8 +1038,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://robcoleman.ca/blog/index.xml" rel="alternate" type="application/rss+xml" title="Rob Coleman" />
-
 
 </head>
 
@@ -1047,7 +1045,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         <a href="https://robcoleman.ca/"><img class="logo" src="https://robcoleman.ca/img/logo.png" alt="logo" /></a>
@@ -1078,42 +1076,123 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
-<div class="main column">
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="posts">
-                <div class="page-heading">Blog</div>
-                <ul>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Mapping 2016 Census Data
+
+</div>
+
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri Dec 8 2017 23:17:18 EST">Dec 8, 2017</div>
                     
-                        <li class="groupby">Dec, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 8, 2017</span>
-    <a href="https://robcoleman.ca/blog/mapping-2016-census-data/"><span>Mapping 2016 Census Data</span></a>
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 5, 2017</span>
-    <a href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/"><span>Scraping Restaurant Health Inspections</span></a>
-</li>
-
                         
                     
-                        <li class="groupby">Aug, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Aug 25, 2017</span>
-    <a href="https://robcoleman.ca/blog/using-rvest-to-scrape-national-occupation-codes/"><span>Using rvest to scrape National Occupation Codes</span></a>
-</li>
-
-                        
-                    
-                </ul>
+                    <div class="reading-time middot">1 minute read</div>
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
             </div>
+            <div class="markdown">
+                
+    
+    <p>The 2016 Census has a lot of <a href="http://www12.statcan.gc.ca/census-recensement/2016/ref/release-dates-diffusion-eng.cfm">useful data</a> to be examined. Luckily, there&rsquo;s a great R package <a href="https://github.com/mountainMath/cancensus"><code>cancensus</code></a> that let&rsquo;s you access and map the data easily.</p>
+
+<p>You can use <code>get_census</code> to download the table and geographic features you need.</p>
+
+<pre><code>sault_income &lt;- get_census(dataset='CA16', regions=list(CMA=&quot;35590&quot;),
+                    vectors=&quot;v_CA16_2397&quot;, level='DA', quiet = TRUE,
+                    geo_format = 'sf', labels = 'short')
+</code></pre>
+
+<p>The dataframe is ready to be mapped using <code>ggplot</code> or <code>leaflet</code> if you want to be interactive.</p>
+
+<pre><code>bins &lt;- c(0, 25000,50000, 75000, 100000, 125000,Inf)
+pal &lt;- colorBin(&quot;RdYlBu&quot;, domain = sault_income$v_CA16_2397, bins = bins)
+
+saultmap &lt;- leaflet(sault_income) %&gt;%
+  addProviderTiles(providers$CartoDB.Positron) %&gt;%
+  addPolygons(fillColor = ~pal(v_CA16_2397),
+              color = &quot;white&quot;,
+              weight = 1,
+              opacity = 1,
+              fillOpacity = 0.55) %&gt;%
+  addLegend(&quot;bottomright&quot;, pal = pal, values = ~sault_income$v_CA16_2397,
+            title = &quot;Total Household Income&quot;,
+            labFormat = labelFormat(prefix = &quot;$&quot;),
+            opacity = 1
+  ) %&gt;%
+  setView(lng = -84.346090, lat = 46.521858, zoom = 12)
+</code></pre>
+
+<iframe seamless src="https://robcoleman.ca/leaflet/leafMap.html" width="100%" height="500"></iframe>
+
+
+                <br>
+            </div>
+            
+            <div class="share">
+                <a href="" class="ssk ssk-facebook"></a>
+                <a href="" class="ssk ssk-twitter"></a>
+                <a href="" class="ssk ssk-google-plus"></a>
+                <a href="" class="ssk ssk-linkedin"></a>
+            </div>
+            
+            
+                <div class="navigation">
+                    
+                    <div>
+                        <img class="icon" src="https://robcoleman.ca/img/back.svg" alt="back" />
+                        <a href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/">Scraping Restaurant Health Inspections</a>
+                    </div>
+                    
+                    <div style="width: 100%;"></div>
+                    
+                </div>
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "robcoleman" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
         </div>
     </div>
 </div>
+
 <div class="footer column">
     <div class="container">
 
