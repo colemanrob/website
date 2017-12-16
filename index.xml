@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2017 Rob Coleman</copyright>
-    <lastBuildDate>Fri, 08 Dec 2017 23:17:18 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Mapping 2016 Census Data</title>
       <link>https://robcoleman.ca/blog/mapping-2016-census-data/</link>
-      <pubDate>Fri, 08 Dec 2017 23:17:18 -0500</pubDate>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://robcoleman.ca/blog/mapping-2016-census-data/</guid>
       <description>The 2016 Census has a lot of useful data to be examined. Luckily, there&amp;rsquo;s a great R package cancensus that let&amp;rsquo;s you access and map the data easily.
