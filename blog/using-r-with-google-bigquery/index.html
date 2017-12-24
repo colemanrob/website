@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Rob Coleman" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robcoleman.ca/blog/mapping-2016-census-data/" />
-<meta property="og:title" content="Mapping 2016 Census Data" />
-<meta property="twitter:title" content="Mapping 2016 Census Data">
+<meta property="og:url" content="https://robcoleman.ca/blog/using-r-with-google-bigquery/" />
+<meta property="og:title" content="Using R with Google BigQuery" />
+<meta property="twitter:title" content="Using R with Google BigQuery">
 
     <meta property="og:image" content="https://robcoleman.ca/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -29,10 +29,10 @@
 <title>
 
 
-     Rob Coleman - Mapping 2016 Census Data 
+     Rob Coleman - Using R with Google BigQuery 
 
 </title>
-<link rel="canonical" href="https://robcoleman.ca/blog/mapping-2016-census-data/">
+<link rel="canonical" href="https://robcoleman.ca/blog/using-r-with-google-bigquery/">
 
 
 <style media="screen">
@@ -1084,13 +1084,13 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                 <div class="title-container">
                     <div class="page-heading">
 
-    Mapping 2016 Census Data
+    Using R with Google BigQuery
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Fri Dec 15 2017 00:00:00 UTC">Dec 15, 2017</div>
+                    <div class="date" title="Sat Dec 23 2017 23:12:22 EST">Dec 23, 2017</div>
                     
                         
                     
@@ -1111,36 +1111,39 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    <p>The 2016 Census has a lot of <a href="http://www12.statcan.gc.ca/census-recensement/2016/ref/release-dates-diffusion-eng.cfm">useful data</a> to be examined. Luckily, there&rsquo;s a great R package <a href="https://github.com/mountainMath/cancensus"><code>cancensus</code></a> that let&rsquo;s you access and map the data easily.</p>
+    
 
-<p>You can use <code>get_census</code> to download the table and geographic features you need.</p>
+<p>Google&rsquo;s <a href="https://cloud.google.com/bigquery/what-is-bigquery">BigQuery</a> has some interesting public datasets and luckily there&rsquo;s an R package that makes interacting with the data extremely easy.  The <a href="https://cran.r-project.org/web/packages/bigrquery/index.html"><code>bigrquery</code></a> library let&rsquo;s you use SQL or dplyr statements to query the data which is super helpful.</p>
 
-<pre><code>sault_income &lt;- get_census(dataset='CA16', regions=list(CMA=&quot;35590&quot;),
-                    vectors=&quot;v_CA16_2397&quot;, level='DA', quiet = TRUE,
-                    geo_format = 'sf', labels = 'short')
+<h2 id="simple-query">Simple Query</h2>
+
+<p>I took a look at the data from the <a href="https://www.census.gov/programs-surveys/international-programs.html">US Census Bureau’s International</a> dataset which provides projections on population indicators.  You need to create a projectid in the bigquery interface before you start.</p>
+
+<pre><code class="language-r">library(tidyverse)
+library(hrbrthemes)
+library(bigrquery)
+
+project &lt;- &quot;YOUR_PROJECT_ID&quot;
+sql &lt;- &quot;SELECT * FROM
+[bigquery-public-data:census_bureau_international.birth_death_growth_rates]&quot;
+rawdata &lt;- query_exec(sql, project = project)
 </code></pre>
 
-<p>The dataframe is ready to be mapped using <code>ggplot</code> or <code>leaflet</code> if you want to be interactive.</p>
+<p>That will load the dataframe into your environment for analysis or visualizations.</p>
 
-<pre><code>bins &lt;- c(0, 25000,50000, 75000, 100000, 125000,Inf)
-pal &lt;- colorBin(&quot;RdYlBu&quot;, domain = sault_income$v_CA16_2397, bins = bins)
-
-saultmap &lt;- leaflet(sault_income) %&gt;%
-  addProviderTiles(providers$CartoDB.Positron) %&gt;%
-  addPolygons(fillColor = ~pal(v_CA16_2397),
-              color = &quot;white&quot;,
-              weight = 1,
-              opacity = 1,
-              fillOpacity = 0.55) %&gt;%
-  addLegend(&quot;bottomright&quot;, pal = pal, values = ~sault_income$v_CA16_2397,
-            title = &quot;Total Household Income&quot;,
-            labFormat = labelFormat(prefix = &quot;$&quot;),
-            opacity = 1
-  ) %&gt;%
-  setView(lng = -84.346090, lat = 46.521858, zoom = 12)
+<pre><code class="language-r">rawdata %&gt;%
+  select(Country = country_name, Year = year, `Growth Rate` = growth_rate) %&gt;%
+  filter(Country %in% c('Canada', 'United States')) %&gt;%
+  filter(Year &gt; 2010) %&gt;%
+  ggplot(aes(x=Year, y=`Growth Rate`, group=Country)) +
+  geom_line(aes(color=Country), size=0.8) +
+  theme_ipsum_rc() +
+  labs(y=&quot;Growth Rate Percentage&quot;,
+       title=&quot;Population Growth Rate Over Time&quot;,
+       caption=&quot;Source: US Census Bureau&quot;)
 </code></pre>
 
-<iframe seamless src="https://robcoleman.ca/leaflet/leafMap.html" width="100%" height="500"></iframe>
+<p><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://robcoleman.ca/img/viz-1.png" src="https://robcoleman.ca/img/low/viz-1.png" alt="" /></p></figure>
 
 
                 <br>
@@ -1158,15 +1161,10 @@ saultmap &lt;- leaflet(sault_income) %&gt;%
                     
                     <div>
                         <img class="icon" src="https://robcoleman.ca/img/back.svg" alt="back" />
-                        <a href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/">Scraping Restaurant Health Inspections</a>
+                        <a href="https://robcoleman.ca/blog/mapping-2016-census-data/">Mapping 2016 Census Data</a>
                     </div>
                     
                     <div style="width: 100%;"></div>
-                    
-                    <div>
-                        <a href="https://robcoleman.ca/blog/using-r-with-google-bigquery/">Using R with Google BigQuery</a>
-                        <img class="icon" src="https://robcoleman.ca/img/next.svg" alt="next" />
-                    </div>
                     
                 </div>
             

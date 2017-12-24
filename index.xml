@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2017 Rob Coleman</copyright>
-    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Dec 2017 23:12:22 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using R with Google BigQuery</title>
+      <link>https://robcoleman.ca/blog/using-r-with-google-bigquery/</link>
+      <pubDate>Sat, 23 Dec 2017 23:12:22 -0500</pubDate>
+      
+      <guid>https://robcoleman.ca/blog/using-r-with-google-bigquery/</guid>
+      <description>Google&amp;rsquo;s BigQuery has some interesting public datasets and luckily there&amp;rsquo;s an R package that makes interacting with the data extremely easy. The bigrquery library let&amp;rsquo;s you use SQL or dplyr statements to query the data which is super helpful.
+Simple Query I took a look at the data from the US Census Bureau’s International dataset which provides projections on population indicators. You need to create a projectid in the bigquery interface before you start.</description>
+    </item>
     
     <item>
       <title>Mapping 2016 Census Data</title>
