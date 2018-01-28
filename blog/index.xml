@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2017 Rob Coleman</copyright>
-    <lastBuildDate>Sat, 23 Dec 2017 23:12:22 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jan 2018 17:24:45 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Minimum Wage Changes in Ontario</title>
+      <link>https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/</link>
+      <pubDate>Sun, 28 Jan 2018 17:24:45 -0500</pubDate>
+      
+      <guid>https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/</guid>
+      <description>Ontario has recently made changes to the minimum wage and many didn&amp;rsquo;t react calmly. I thought it might be interesting to see what kinds of occupations will be affected by the changes. Thankfully, the federal government posted a dataset on wages that helps answer some questions.
+Exploring the data We can use the dataset to find out which occupations have a median wage of less than $14/hr. I&amp;rsquo;m particularly interested in my neck of the woods, Northern Ontario.</description>
+    </item>
     
     <item>
       <title>Using R with Google BigQuery</title>

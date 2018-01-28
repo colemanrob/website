@@ -2,7 +2,6 @@
 <html lang="en-US">
 
 <head>
-	<meta name="generator" content="Hugo 0.31.1" />
 <meta charset="utf-8">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -16,24 +15,24 @@
 <meta property="og:site_name" content="Rob Coleman" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://robcoleman.ca/" />
-<meta property="og:title" content="Rob Coleman" />
-<meta property="twitter:title" content="Rob Coleman">
+<meta property="og:url" content="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/" />
+<meta property="og:title" content="Minimum Wage Changes in Ontario" />
+<meta property="twitter:title" content="Minimum Wage Changes in Ontario">
 
     <meta property="og:image" content="https://robcoleman.ca/img/banner.png">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:image" content="https://robcoleman.ca/img/banner.png">
 
-<meta property="og:description" content="A web notebook">
-<meta property="twitter:description" content="A web notebook">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-    Rob Coleman
+     Rob Coleman - Minimum Wage Changes in Ontario 
 
 </title>
-<link rel="canonical" href="https://robcoleman.ca/">
+<link rel="canonical" href="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/">
 
 
 <style media="screen">
@@ -1039,8 +1038,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-  <link href="https://robcoleman.ca/index.xml" rel="alternate" type="application/rss+xml" title="Rob Coleman" />
-
 
 </head>
 
@@ -1048,7 +1045,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header header-home column">
+<div class="header column">
 
     <div class="container">
         <a href="https://robcoleman.ca/"><img class="logo" src="https://robcoleman.ca/img/logo.png" alt="logo" /></a>
@@ -1079,75 +1076,157 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
-<div class="main column">
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            
-                <div class="markdown">
-                
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Minimum Wage Changes in Ontario
+
+</div>
+
                 </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
+                <div class="meta">
+                    <div class="date" title="Sun Jan 28 2018 17:24:45 EST">Jan 28, 2018</div>
                     
-                        <li class="groupby">Jan, 2018</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Jan 28, 2018</span>
-    <a href="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/"><span>Minimum Wage Changes in Ontario</span></a>
-</li>
-
                         
                     
-                        <li class="groupby">Dec, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 23, 2017</span>
-    <a href="https://robcoleman.ca/blog/using-r-with-google-bigquery/"><span>Using R with Google BigQuery</span></a>
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 15, 2017</span>
-    <a href="https://robcoleman.ca/blog/mapping-2016-census-data/"><span>Mapping 2016 Census Data</span></a>
-</li>
-
-                        
-                            <li class="post-item">
-    <span class="meta">Dec 5, 2017</span>
-    <a href="https://robcoleman.ca/blog/scraping-restaurant-health-inspections/"><span>Scraping Restaurant Health Inspections</span></a>
-</li>
-
-                        
-                    
-                        <li class="groupby">Aug, 2017</li>
-                        
-                            <li class="post-item">
-    <span class="meta">Aug 25, 2017</span>
-    <a href="https://robcoleman.ca/blog/using-rvest-to-scrape-national-occupation-codes/"><span>Using rvest to scrape National Occupation Codes</span></a>
-</li>
-
-                        
-                    
-                    </ul>
-
-                    
-                
+                    <div class="reading-time middot">3 minute read</div>
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
                 </div>
-            
-
-            <div class="best-posts">
-            
-            
             </div>
+            <div class="markdown">
+                
+    
+    
+
+<p>Ontario has recently made <a href="https://www.ontario.ca/page/minimum-wage-increase">changes to the minimum wage</a> and many <a href="https://twitter.com/search?q=minimum%20wage%20%23onpoli&amp;src=typd">didn&rsquo;t react calmly</a>.  I thought it might be interesting to see what kinds of occupations will be affected by the changes.  Thankfully, the federal government posted <a href="http://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116">a dataset on wages</a> that helps answer some questions.</p>
+
+<h2 id="exploring-the-data">Exploring the data</h2>
+
+<p>We can use the dataset to find out which occupations have a median wage of less than $14/hr.  I&rsquo;m particularly interested in my neck of the woods, Northern Ontario.  It often demonstrates typical core-periphary or urban-rural economic dynamics (negative growth, youth out-migrations, etc).</p>
+
+<pre><code class="language-r occupations, echo=FALSE">wages %&gt;%
+  filter(!(str_detect(`ER Code_Code RE`, &quot;^ER\\d{2}$&quot;))) %&gt;% #filter provincial results do not appear
+  filter(`ER Code_Code RE` != &quot;ER00&quot;) %&gt;% #remove national totals
+  filter(!is.na(`Median wage_Salaire Median`)) %&gt;% #remove mising
+  filter(`Annual Wage Flag_Salaire annuel` &lt; 1) %&gt;% #remove annual salaries
+  filter(`Median wage_Salaire Median` &lt;= 15) %&gt;%
+  filter(PROV == &quot;ON&quot; &amp; `ER Name_Nom RE` == &quot;Northeast&quot; | `ER Name_Nom RE` == &quot;Northwest&quot;) %&gt;%
+  ggplot(aes(reorder(`NOC Title`, -`Median wage_Salaire Median`), `Median wage_Salaire Median`, fill=`ER Name_Nom RE`)) +
+  geom_col(alpha=0.7, fill=&quot;#91AAB4&quot;, show.legend = F) +
+  coord_flip() +
+  facet_wrap(~`ER Name_Nom RE`) +
+  labs(title = &quot;Which occupations are affected by changes in minimum wage?&quot;,
+       x = NULL,
+       y = &quot;median hourly wage&quot;,
+       subtitle = &quot;Northern Ontario Occupations by Median Hourly Wage&quot;,
+       caption = &quot;Source: Wage data available via Open Data \n http://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116&quot;) +
+  theme_ipsum_rc(base_family=&quot;Roboto&quot;, grid = &quot;X&quot;)
+</code></pre>
+
+<p><a href="https://robcoleman.ca/img/minwage1.png"><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://robcoleman.ca/img/minwage1.png" src="https://robcoleman.ca/img/low/minwage1.png" alt="" /></a></p></figure>
+
+<p>Looks like a lot of jobs in the service sector.  These jobs are important in the North so it will be interesting to see if the wage changes put these jobs at risk, or whether the additional purchasing power helps the bolster the service sector altogether.</p>
+
+<h2 id="impacts-on-communities">Impacts on communities</h2>
+
+<p>We can also check what proportion of occupations have hourly wages that will be affected by the change in minimum wage.  It&rsquo;s interesting to look by community to see where Northern Ontario fits.</p>
+
+<pre><code class="language-r">wages %&gt;%
+  filter(!is.na(`Median wage_Salaire Median`)) %&gt;%
+  filter(!(str_detect(`ER Code_Code RE`, &quot;^ER\\d{2}$&quot;))) %&gt;% #filter provincial results do not appear
+  filter(`ER Code_Code RE` != &quot;ER00&quot;) %&gt;% #remove national totals
+  filter(`Annual Wage Flag_Salaire annuel` &lt; 1) %&gt;% #remove annual salaries
+  filter(PROV == &quot;ON&quot;) %&gt;%
+  mutate(low_wage = case_when(
+    `Median wage_Salaire Median` &lt;= 14 ~ 1,
+    TRUE ~ 0
+  )) %&gt;%
+  group_by(`ER Name_Nom RE`) %&gt;%
+  summarise(total_occupations = n_distinct(NOC_CNP),
+            total_low_wage = sum(low_wage)) %&gt;%
+  mutate(prop_low_wage = total_low_wage / total_occupations) %&gt;%
+  ggplot(aes(reorder(`ER Name_Nom RE`, prop_low_wage), prop_low_wage)) +
+  geom_col(alpha=0.7, fill=&quot;#91AAB4&quot;) +
+  coord_flip() +
+  scale_y_percent() +
+  labs(title = &quot;Where does the change in minimum wage affect Ontario communities most?&quot;,
+           x = NULL,
+           y = &quot;% of occupations with median wages &lt; $14/hr&quot;,
+           subtitle = &quot;Proportion of Occupations with Median Wage &lt; $14/hr by Ontario Community&quot;,
+           caption = &quot;Source: Wage data available via Open Data \n http://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116&quot;) +
+  theme_ipsum_rc(base_family=&quot;Roboto&quot;, grid = &quot;X&quot;)
+</code></pre>
+
+<p><a href="https://robcoleman.ca/img/minwage2.png"><figure class="progressive"><img class="progressive__img progressive--not-loaded" data-progressive="https://robcoleman.ca/img/minwage2.png" src="https://robcoleman.ca/img/low/minwage2.png" alt="" /></a></p></figure>
+
+<p>Over 12 percent of occupations in the London area will be affected by the change in minimum wage.  I wonder what kinds of effects the change will have on these smaller economies.  Hopefully the feds update this dataset next year.</p>
+
+
+                <br>
+            </div>
+            
+            <div class="share">
+                <a href="" class="ssk ssk-facebook"></a>
+                <a href="" class="ssk ssk-twitter"></a>
+                <a href="" class="ssk ssk-google-plus"></a>
+                <a href="" class="ssk ssk-linkedin"></a>
+            </div>
+            
+            
+                <div class="navigation">
+                    
+                    <div>
+                        <img class="icon" src="https://robcoleman.ca/img/back.svg" alt="back" />
+                        <a href="https://robcoleman.ca/blog/using-r-with-google-bigquery/">Using R with Google BigQuery</a>
+                    </div>
+                    
+                    <div style="width: 100%;"></div>
+                    
+                </div>
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "robcoleman" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
         </div>
     </div>
 </div>
+
 <div class="footer column">
     <div class="container">
 
