@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>Copyright © 2017 Rob Coleman</copyright>
-    <lastBuildDate>Sun, 28 Jan 2018 17:24:45 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 18 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Open Data to map Bill 148 effects</title>
+      <link>https://robcoleman.ca/blog/using-open-data-to-map-bill-148-effects/</link>
+      <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://robcoleman.ca/blog/using-open-data-to-map-bill-148-effects/</guid>
+      <description>I covered some interesting changes to minimum wage in my last post. I&amp;rsquo;m trying to build my skills in the mapping department, so I&amp;rsquo;m going to create an interactive map of the communities most affected by the change in minimum wage.
+Loading the data The wage data is collected by the Canadian federal government and published as an open dataset available for download. The data is geographically organized by economic region, so we&amp;rsquo;ll need the shapefile for those boundaries which is also published as an open dataset!</description>
+    </item>
     
     <item>
       <title>Minimum Wage Changes in Ontario</title>
