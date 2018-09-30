@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Scraping on Rob Coleman</title>
-    <link>https://username.github.io/tags/web-scraping/</link>
+    <link>https://robcoleman.ca/tags/web-scraping/</link>
     <description>Recent content in Web Scraping on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
     <lastBuildDate>Tue, 05 Dec 2017 22:24:48 -0500</lastBuildDate>
     
-	<atom:link href="https://username.github.io/tags/web-scraping/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/tags/web-scraping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Scraping Restaurant Health Inspections</title>
-      <link>https://username.github.io/post/resto/</link>
+      <link>https://robcoleman.ca/post/resto/</link>
       <pubDate>Tue, 05 Dec 2017 22:24:48 -0500</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/post/resto/</guid>
+      <guid>https://robcoleman.ca/post/resto/</guid>
       <description>Algoma Public Health is the public health agency in my area that inspects restaurants to ensure they are abiding by all the relevant food safety legislation. They are also nice enough to publish their restaurant health inspection reports online for anyone to review.
 I searched for a few restaurants that I frequent (phew Fratellis is safe!) but then I wanted to know which restaurants had the most health infractions?</description>
     </item>
     
     <item>
       <title>Using rvest to scrape National Occupation Codes</title>
-      <link>https://username.github.io/post/noc-noc/</link>
+      <link>https://robcoleman.ca/post/noc-noc/</link>
       <pubDate>Fri, 25 Aug 2017 11:01:19 -0400</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/post/noc-noc/</guid>
+      <guid>https://robcoleman.ca/post/noc-noc/</guid>
       <description>At work, I&amp;rsquo;m always looking for a list of National Occupation Codes and their descriptions. I realized I can probably scrape this information faster than I can find it on my team&amp;rsquo;s network drive thanks to rvest and the tidyverse.
 Libraries:
 library(tidyverse) # make tidy library(rvest) # scrape data library(knitr) # make a table Read in the appropriate list of NOCs:

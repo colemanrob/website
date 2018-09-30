@@ -2,85 +2,85 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Rob Coleman</title>
-    <link>https://username.github.io/tags/</link>
+    <link>https://robcoleman.ca/tags/</link>
     <description>Recent content in Tags on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
     <lastBuildDate>Sat, 23 Dec 2017 23:12:22 -0500</lastBuildDate>
     
-	<atom:link href="https://username.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bigquery</title>
-      <link>https://username.github.io/tags/bigquery/</link>
+      <link>https://robcoleman.ca/tags/bigquery/</link>
       <pubDate>Sat, 23 Dec 2017 23:12:22 -0500</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/bigquery/</guid>
+      <guid>https://robcoleman.ca/tags/bigquery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Books</title>
-      <link>https://username.github.io/tags/books/</link>
+      <link>https://robcoleman.ca/tags/books/</link>
       <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/books/</guid>
+      <guid>https://robcoleman.ca/tags/books/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Census</title>
-      <link>https://username.github.io/tags/census/</link>
+      <link>https://robcoleman.ca/tags/census/</link>
       <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/census/</guid>
+      <guid>https://robcoleman.ca/tags/census/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Minimum Wage</title>
-      <link>https://username.github.io/tags/minimum-wage/</link>
+      <link>https://robcoleman.ca/tags/minimum-wage/</link>
       <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/minimum-wage/</guid>
+      <guid>https://robcoleman.ca/tags/minimum-wage/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Noc</title>
-      <link>https://username.github.io/tags/noc/</link>
+      <link>https://robcoleman.ca/tags/noc/</link>
       <pubDate>Fri, 25 Aug 2017 11:01:19 -0400</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/noc/</guid>
+      <guid>https://robcoleman.ca/tags/noc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Open Data</title>
-      <link>https://username.github.io/tags/open-data/</link>
+      <link>https://robcoleman.ca/tags/open-data/</link>
       <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/open-data/</guid>
+      <guid>https://robcoleman.ca/tags/open-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Prediction</title>
-      <link>https://username.github.io/tags/prediction/</link>
+      <link>https://robcoleman.ca/tags/prediction/</link>
       <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/prediction/</guid>
+      <guid>https://robcoleman.ca/tags/prediction/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web Scraping</title>
-      <link>https://username.github.io/tags/web-scraping/</link>
+      <link>https://robcoleman.ca/tags/web-scraping/</link>
       <pubDate>Tue, 05 Dec 2017 22:24:48 -0500</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/tags/web-scraping/</guid>
+      <guid>https://robcoleman.ca/tags/web-scraping/</guid>
       <description></description>
     </item>
     

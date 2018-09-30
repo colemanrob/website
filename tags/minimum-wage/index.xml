@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Minimum Wage on Rob Coleman</title>
-    <link>https://username.github.io/tags/minimum-wage/</link>
+    <link>https://robcoleman.ca/tags/minimum-wage/</link>
     <description>Recent content in Minimum Wage on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
     <lastBuildDate>Sun, 18 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://username.github.io/tags/minimum-wage/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/tags/minimum-wage/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Using Open Data to map Bill 148 effects</title>
-      <link>https://username.github.io/post/writeup/</link>
+      <link>https://robcoleman.ca/post/writeup/</link>
       <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/post/writeup/</guid>
+      <guid>https://robcoleman.ca/post/writeup/</guid>
       <description>I covered some interesting changes to minimum wage in my last post. I&amp;rsquo;m trying to build my skills in the mapping department, so I&amp;rsquo;m going to create an interactive map of the communities most affected by the change in minimum wage.
 Loading the data The wage data is collected by the Canadian federal government and published as an open dataset available for download. The data is geographically organized by economic region, so we&amp;rsquo;ll need the shapefile for those boundaries which is also published as an open dataset!</description>
     </item>
     
     <item>
       <title>Minimum Wage Changes in Ontario</title>
-      <link>https://username.github.io/post/minwage/</link>
+      <link>https://robcoleman.ca/post/minwage/</link>
       <pubDate>Sun, 28 Jan 2018 17:24:45 -0500</pubDate>
       <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://username.github.io/post/minwage/</guid>
+      <guid>https://robcoleman.ca/post/minwage/</guid>
       <description>Ontario has recently made changes to the minimum wage and many didn&amp;rsquo;t react calmly. I thought it might be interesting to see what kinds of occupations will be affected by the changes. Thankfully, the federal government posted a dataset on wages that helps answer some questions.
 Exploring the data We can use the dataset to find out which occupations have a median wage of less than $14/hr. I&amp;rsquo;m particularly interested in my neck of the woods, Northern Ontario.</description>
     </item>
