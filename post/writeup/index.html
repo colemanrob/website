@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Using Open Data to map Bill 148 effects</title>
+  <meta property="og:title" content="Using Open Data to map Bill 148 effects" />
+  <meta name="twitter:title" content="Using Open Data to map Bill 148 effects" />
+  <meta name="description" content="Mapping the effects of minimum wage changes in Ontario using R">
+  <meta property="og:description" content="Mapping the effects of minimum wage changes in Ontario using R">
+  <meta name="twitter:description" content="Mapping the effects of minimum wage changes in Ontario using R">
+  <meta name="author" content="Rob Coleman"/>
+  <link href='https://username.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@coleman" />
+  <meta name="twitter:creator" content="@coleman" />
+  <meta property="og:url" content="https://username.github.io/post/writeup/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rob Coleman" />
+
+  <meta name="generator" content="Hugo 0.49" />
+  <link rel="canonical" href="https://username.github.io/post/writeup/" />
+  <link rel="alternate" href="https://username.github.io/index.xml" type="application/rss+xml" title="Rob Coleman">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://username.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://username.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://username.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73411487-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://username.github.io">Rob Coleman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Using Open Data to map Bill 148 effects</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  Posted on March 18, 2018
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<p>I covered some interesting changes to minimum wage in my <a href="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/">last post</a>. I&rsquo;m trying to build my skills in the mapping department, so I&rsquo;m going to create an interactive map of the communities most affected by the change in minimum wage.</p>
+
+<h2 id="loading-the-data">Loading the data</h2>
+
+<p>The wage data is collected by the Canadian federal government and published as an <a href="https://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116">open dataset</a> available for download. The data is geographically organized by <a href="https://www.statcan.gc.ca/pub/92-195-x/2011001/geo/er-re/er-re-eng.htm">economic region</a>, so we&rsquo;ll need the shapefile for those boundaries which is also published as an <a href="https://open.canada.ca/data/en/dataset/c1242d53-3cef-4733-bafe-7492453c7e49">open dataset</a>!</p>
+<div class="highlight"><pre class="chroma">## Reading layer `ler_000b16a_e&#39; from data source `c:\Users\rob\Documents\projects\minwage_map\map_data&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 76 features and 4 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 3689439 ymin: 659338.9 xmax: 9015737 ymax: 5242179
+## epsg (SRID):    NA
+## proj4string:    +proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +datum=NAD83 +units=m +no_defs</pre></div>
+<h2 id="clean-the-wage-data">Clean the Wage data</h2>
+
+<p>The data has a mix of wage types (hourly, annually) from a variety of sources. For my purposes I&rsquo;ll take the median wage for those occupations where it&rsquo;s reported hourly and ignore the annual data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># clean data</span>
+ON_wage_data <span class="o">&lt;-</span> wage_data <span class="o">%&gt;%</span>
+  filter<span class="p">(</span>PROV <span class="o">==</span> <span class="s">&#34;ON&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#filer ON results only</span>
+  filter<span class="p">(</span><span class="sb">`Annual Wage Flag_Salaire annuel`</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#remove annual salaries</span>
+  filter<span class="p">(</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span><span class="sb">`Median wage_Salaire Median`</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1">#remove occupations with missing data</span>
+  filter<span class="p">(</span><span class="o">!</span><span class="sb">`ER Code_Code RE`</span> <span class="o">==</span> <span class="s">&#34;ER35&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#remove Ontario total</span>
+  mutate<span class="p">(</span>ERUID <span class="o">=</span> str_sub<span class="p">(</span><span class="sb">`ER Code_Code RE`</span><span class="p">,</span> start<span class="o">=</span><span class="m">3L</span><span class="p">))</span> <span class="c1"># remove ER from ER Code so it can be joined</span>
+
+
+<span class="c1"># how many low wage by community</span>
+
+ON_wage_prop <span class="o">&lt;-</span> ON_wage_data <span class="o">%&gt;%</span>
+  mutate<span class="p">(</span>low_wage <span class="o">=</span> case_when<span class="p">(</span>
+    <span class="sb">`Median wage_Salaire Median`</span> <span class="o">&lt;=</span> <span class="m">14</span> <span class="o">~</span> <span class="m">1</span><span class="p">,</span>
+    <span class="kc">TRUE</span> <span class="o">~</span> <span class="m">0</span>
+  <span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1"># add a low wage indicator</span>
+  group_by<span class="p">(</span><span class="sb">`ERNAME`</span> <span class="o">=</span> <span class="sb">`ER Name_Nom RE`</span><span class="p">,</span> ERUID<span class="p">)</span> <span class="o">%&gt;%</span>
+  summarise<span class="p">(</span>total_occupations <span class="o">=</span> n_distinct<span class="p">(</span>NOC_CNP<span class="p">),</span>
+            total_low_wage <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>low_wage<span class="p">))</span> <span class="o">%&gt;%</span>
+  mutate<span class="p">(</span>prop_low_wage <span class="o">=</span> <span class="kp">round</span><span class="p">(</span>total_low_wage <span class="o">/</span> total_occupations <span class="o">*</span> <span class="m">100</span><span class="p">))</span> <span class="c1"># compute the proportion of occupations that are low wage</span>
+
+<span class="c1"># results</span>
+ON_wage_prop <span class="o">%&gt;%</span>
+  arrange<span class="p">(</span>desc<span class="p">(</span>prop_low_wage<span class="p">))</span> <span class="o">%&gt;%</span>
+  kable<span class="p">()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">ERNAME</th>
+<th align="left">ERUID</th>
+<th align="right">total_occupations</th>
+<th align="right">total_low_wage</th>
+<th align="right">prop_low_wage</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">London</td>
+<td align="left">3560</td>
+<td align="right">242</td>
+<td align="right">31</td>
+<td align="right">13</td>
+</tr>
+
+<tr>
+<td align="left">Kingston&ndash;Pembroke</td>
+<td align="left">3515</td>
+<td align="right">194</td>
+<td align="right">24</td>
+<td align="right">12</td>
+</tr>
+
+<tr>
+<td align="left">Northwest</td>
+<td align="left">3595</td>
+<td align="right">157</td>
+<td align="right">19</td>
+<td align="right">12</td>
+</tr>
+
+<tr>
+<td align="left">Muskoka&ndash;Kawarthas</td>
+<td align="left">3520</td>
+<td align="right">170</td>
+<td align="right">18</td>
+<td align="right">11</td>
+</tr>
+
+<tr>
+<td align="left">Toronto</td>
+<td align="left">3530</td>
+<td align="right">396</td>
+<td align="right">39</td>
+<td align="right">10</td>
+</tr>
+
+<tr>
+<td align="left">Windsor&ndash;Sarnia</td>
+<td align="left">3570</td>
+<td align="right">222</td>
+<td align="right">23</td>
+<td align="right">10</td>
+</tr>
+
+<tr>
+<td align="left">Hamilton&ndash;Niagara Peninsula</td>
+<td align="left">3550</td>
+<td align="right">337</td>
+<td align="right">29</td>
+<td align="right">9</td>
+</tr>
+
+<tr>
+<td align="left">Northeast</td>
+<td align="left">3590</td>
+<td align="right">232</td>
+<td align="right">22</td>
+<td align="right">9</td>
+</tr>
+
+<tr>
+<td align="left">Ottawa</td>
+<td align="left">3510</td>
+<td align="right">291</td>
+<td align="right">26</td>
+<td align="right">9</td>
+</tr>
+
+<tr>
+<td align="left">Kitchener&ndash;Waterloo&ndash;Barrie</td>
+<td align="left">3540</td>
+<td align="right">335</td>
+<td align="right">28</td>
+<td align="right">8</td>
+</tr>
+
+<tr>
+<td align="left">Stratford&ndash;Bruce Peninsula</td>
+<td align="left">3580</td>
+<td align="right">143</td>
+<td align="right">12</td>
+<td align="right">8</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="join-the-data">Join the data</h2>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># subset just ontario ERs</span>
+ON_ERs <span class="o">&lt;-</span> CAN_ERs <span class="o">%&gt;%</span>
+  filter<span class="p">(</span>PRNAME<span class="o">==</span> <span class="s">&#34;Ontario&#34;</span><span class="p">)</span>
+
+
+<span class="c1">#see if it the subset worked</span>
+plot<span class="p">(</span>ON_ERs<span class="p">)</span></code></pre></div>
+<p><a href="/img/ON.png"><img src="/img/ON.png" alt="" /></a></p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#join the data to the boundary file</span>
+
+merged_ON <span class="o">&lt;-</span> <span class="kp">merge</span><span class="p">(</span>ON_ERs<span class="p">,</span> ON_wage_prop<span class="p">,</span> by <span class="o">=</span> <span class="s">&#34;ERUID&#34;</span><span class="p">)</span>
+
+<span class="c1">#did it work?</span>
+<span class="kp">summary</span><span class="p">(</span>merged_ON<span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">##      ERUID                          ERNAME.x     PRUID   
+##  3510   :1   Hamilton--Niagara Peninsula:1   35     :11  
+##  3515   :1   Kingston--Pembroke         :1   10     : 0  
+##  3520   :1   Kitchener--Waterloo--Barrie:1   11     : 0  
+##  3530   :1   London                     :1   12     : 0  
+##  3540   :1   Muskoka--Kawarthas         :1   13     : 0  
+##  3550   :1   Northeast / Nord-est       :1   24     : 0  
+##  (Other):5   (Other)                    :5   (Other): 0  
+##                                                  PRNAME  
+##  Ontario                                            :11  
+##  Alberta                                            : 0  
+##  British Columbia / Colombie-Britannique            : 0  
+##  Manitoba                                           : 0  
+##  New Brunswick / Nouveau-Brunswick                  : 0  
+##  Newfoundland and Labrador / Terre-Neuve-et-Labrador: 0  
+##  (Other)                                            : 0  
+##    ERNAME.y         total_occupations total_low_wage  prop_low_wage  
+##  Length:11          Min.   :143.0     Min.   :12.00   Min.   : 8.00  
+##  Class :character   1st Qu.:182.0     1st Qu.:20.50   1st Qu.: 9.00  
+##  Mode  :character   Median :232.0     Median :24.00   Median :10.00  
+##                     Mean   :247.2     Mean   :24.64   Mean   :10.09  
+##                     3rd Qu.:313.0     3rd Qu.:28.50   3rd Qu.:11.50  
+##                     Max.   :396.0     Max.   :39.00   Max.   :13.00  
+##                                                                      
+##           geometry
+##  MULTIPOLYGON :11  
+##  epsg:NA      : 0  
+##  +proj=lcc ...: 0  
+##                    
+##                    
+##                    
+##</pre></div>
+<h2 id="build-the-map">Build the map</h2>
+
+<p>When I first started building the map with <code>leaflet</code> I kept getting this error:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">leaflet<span class="p">(</span>merged_ON<span class="p">)</span>  </code></pre></div>
+<p><code>Warning messages: 1: sf layer is not long-lat data  2: sf layer has inconsistent datum (+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +datum=NAD83 +units=m +no_defs). Need '+proj=longlat +datum=WGS84'</code></p>
+
+<p>I used <code>st_transform</code> to change from <code>datum=NAD83</code> to <code>datum=WGS84</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">new_ON <span class="o">&lt;-</span> st_transform<span class="p">(</span>merged_ON<span class="p">,</span> <span class="s">&#34;+proj=longlat&#34;</span><span class="p">,</span> <span class="s">&#34;+datum=WGS84&#34;</span><span class="p">)</span></code></pre></div>
+<p>That managed to allow me to use <code>leaflet</code> without throwing up an errors.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># set colours for cloropleth</span>
+bins <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span><span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">13</span><span class="p">)</span>
+pal <span class="o">&lt;-</span> colorBin<span class="p">(</span><span class="s">&#34;YlOrRd&#34;</span><span class="p">,</span> domain <span class="o">=</span> new_ON<span class="o">$</span>prop_low_wage<span class="p">,</span> bins <span class="o">=</span> bins<span class="p">)</span>
+
+<span class="c1"># create labels</span>
+labels <span class="o">&lt;-</span> <span class="kp">sprintf</span><span class="p">(</span>
+  <span class="s">&#34;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%d total occupations &lt;br/&gt; %i total low wage occupations&#34;</span><span class="p">,</span>
+  new_ON<span class="o">$</span>ERNAME.y<span class="p">,</span> new_ON<span class="o">$</span>total_occupations<span class="p">,</span> new_ON<span class="o">$</span>total_low_wage
+<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">lapply</span><span class="p">(</span>htmltools<span class="o">::</span>HTML<span class="p">)</span>
+
+map <span class="o">&lt;-</span> leaflet<span class="p">(</span>new_ON<span class="p">)</span> <span class="o">%&gt;%</span>
+  addTiles<span class="p">()</span> <span class="o">%&gt;%</span>
+  addPolygons<span class="p">(</span>fillColor <span class="o">=</span> <span class="o">~</span>pal<span class="p">(</span>prop_low_wage<span class="p">),</span>
+              color <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span>
+              weight <span class="o">=</span> <span class="m">2</span><span class="p">,</span>
+              opacity <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+              fillOpacity <span class="o">=</span> <span class="m">0.55</span><span class="p">,</span>
+              highlight <span class="o">=</span> highlightOptions<span class="p">(</span>
+                weight <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+                color <span class="o">=</span> <span class="s">&#34;#666&#34;</span><span class="p">,</span>
+                dashArray <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
+                fillOpacity <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>
+                bringToFront <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+              label <span class="o">=</span> <span class="kp">labels</span><span class="p">,</span>
+              labelOptions <span class="o">=</span> labelOptions<span class="p">(</span>
+                style <span class="o">=</span> <span class="kt">list</span><span class="p">(</span><span class="s">&#34;font-weight&#34;</span> <span class="o">=</span> <span class="s">&#34;normal&#34;</span><span class="p">,</span> padding <span class="o">=</span> <span class="s">&#34;3px 8px&#34;</span><span class="p">),</span>
+                textsize <span class="o">=</span> <span class="s">&#34;15px&#34;</span><span class="p">,</span>
+                direction <span class="o">=</span> <span class="s">&#34;auto&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  addLegend<span class="p">(</span><span class="s">&#34;topright&#34;</span><span class="p">,</span> pal <span class="o">=</span> pal<span class="p">,</span> values <span class="o">=</span> <span class="o">~</span>new_ON<span class="o">$</span>prop_low_wage<span class="p">,</span>
+            title <span class="o">=</span> <span class="s">&#34;% of low wage occupations&#34;</span><span class="p">,</span>
+            labFormat <span class="o">=</span> labelFormat<span class="p">(</span>prefix <span class="o">=</span> <span class="s">&#34;%&#34;</span><span class="p">),</span>
+            opacity <span class="o">=</span> <span class="m">1</span><span class="p">)</span></code></pre></div>
+<h2 id="map-of-ontario-economic-regions-by-low-wage">Map of Ontario Economic Regions by Low Wage</h2>
+
+<iframe seamless src="/leaflet/mymap.html" width="100%" height="500"></iframe>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li>Jesse Sadler&rsquo;s excellent <a href="https://www.jessesadler.com/post/gis-with-r-intro/">GIS Intro with R</a></li>
+<li>The <code>sf</code> package <a href="https://cran.r-project.org/web/packages/sf/vignettes/sf1.html">vignette</a></li>
+<li>A good discussion on <a href="http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS2_MergingSpatialData_part1_Joins.html">merging spatial data</a></li>
+<li>This repo was really helpful <a href="https://cengel.github.io/rspatial/">Intro to mapping and spatial analysis</a></li>
+</ul>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://username.github.io/tags/open-data/">Open Data</a>&nbsp;
+            
+              <a href="https://username.github.io/tags/minimum-wage/">Minimum wage</a>&nbsp;
+            
+          </div>
+        
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://username.github.io/post/minwage/" data-toggle="tooltip" data-placement="top" title="Minimum Wage Changes in Ontario">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://username.github.io/post/summer_reading/" data-toggle="tooltip" data-placement="top" title="Summer reading">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:coleman.rob&#43;nospam@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/colemanrob" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/coleman" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/robcoleman" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://username.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="robcoleman.ca">Rob Coleman</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.49</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://username.github.io/js/main.js"></script>
+<script src="https://username.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://username.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bigquery on Rob Coleman</title>
+    <link>https://username.github.io/tags/bigquery/</link>
+    <description>Recent content in Bigquery on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
+    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
+    <lastBuildDate>Sat, 23 Dec 2017 23:12:22 -0500</lastBuildDate>
+    
+	<atom:link href="https://username.github.io/tags/bigquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using R with Google BigQuery</title>
+      <link>https://username.github.io/post/bigquery/</link>
+      <pubDate>Sat, 23 Dec 2017 23:12:22 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://username.github.io/post/bigquery/</guid>
+      <description>Google&amp;rsquo;s BigQuery has some interesting public datasets and luckily there&amp;rsquo;s an R package that makes interacting with the data extremely easy. The bigrquery library let&amp;rsquo;s you use SQL or dplyr statements to query the data which is super helpful.
+Simple Query I took a look at the data from the US Census Bureau’s International dataset which provides projections on population indicators. You need to create a projectid in the bigquery interface before you start.</description>
+    </item>
+    
+  </channel>
+</rss>

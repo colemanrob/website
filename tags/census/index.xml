@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Census on Rob Coleman</title>
+    <link>https://username.github.io/tags/census/</link>
+    <description>Recent content in Census on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
+    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
+    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://username.github.io/tags/census/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mapping 2016 Census Data</title>
+      <link>https://username.github.io/post/censusmap/</link>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://username.github.io/post/censusmap/</guid>
+      <description>The 2016 Census has a lot of useful data to be examined. Luckily, there&amp;rsquo;s a great R package cancensus that let&amp;rsquo;s you access and map the data easily.
+You can use get_census to download the table and geographic features you need.
+sault_income &amp;lt;- get_census(dataset=&amp;#39;CA16&amp;#39;, regions=list(CMA=&amp;#34;35590&amp;#34;), vectors=&amp;#34;v_CA16_2397&amp;#34;, level=&amp;#39;DA&amp;#39;, quiet = TRUE, geo_format = &amp;#39;sf&amp;#39;, labels = &amp;#39;short&amp;#39;) The dataframe is ready to be mapped using ggplot or leaflet if you want to be interactive.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Rob Coleman</title>
+    <link>https://username.github.io/page/</link>
+    <description>Recent content in Pages on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
+    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
+    <lastBuildDate>Sat, 22 Aug 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://username.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://username.github.io/page/about/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://username.github.io/page/about/</guid>
+      <description>Hi, I&amp;rsquo;m Rob a government researcher in the field of employment and training. I studied political science and other fun subjects in school. Now I spend a lot of time analyzing data using #rstats and building things on the web.
+I live in the frozen Canadian north with my partner and this guy:
+  View this post on Instagram        Barn yard!
+A post shared by Rob (@robcoleman) on Aug 24, 2017 at 3:04pm PDT</description>
+    </item>
+    
+  </channel>
+</rss>
