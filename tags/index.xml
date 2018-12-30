@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Sat, 23 Dec 2017 23:12:22 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 25 Nov 2018 22:13:15 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Activation</title>
+      <link>https://robcoleman.ca/tags/activation/</link>
+      <pubDate>Sun, 25 Nov 2018 22:13:15 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/tags/activation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Almps</title>
+      <link>https://robcoleman.ca/tags/almps/</link>
+      <pubDate>Sun, 25 Nov 2018 22:13:15 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/tags/almps/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Bigquery</title>
