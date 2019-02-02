@@ -5,21 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Risk</title>
-  <meta property="og:title" content="Risk" />
-  <meta name="twitter:title" content="Risk" />
+  <title>Tracking Books</title>
+  <meta property="og:title" content="Tracking Books" />
+  <meta name="twitter:title" content="Tracking Books" />
+  <meta name="description" content="Using R to Generate a booklist">
+  <meta property="og:description" content="Using R to Generate a booklist">
+  <meta name="twitter:description" content="Using R to Generate a booklist">
   <meta name="author" content="Rob Coleman"/>
   <link href='https://robcoleman.ca/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@coleman" />
   <meta name="twitter:creator" content="@coleman" />
-  <meta property="og:url" content="https://robcoleman.ca/tags/risk/" />
+  <meta property="og:url" content="https://robcoleman.ca/post/booklist/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Rob Coleman" />
 
   <meta name="generator" content="Hugo 0.54.0" />
-  <link rel="canonical" href="https://robcoleman.ca/tags/risk/" />
-  <link rel="alternate" href="https://robcoleman.ca/tags/risk/index.xml" type="application/rss+xml" title="Rob Coleman">
+  <link rel="canonical" href="https://robcoleman.ca/post/booklist/" />
+  <link rel="alternate" href="https://robcoleman.ca/index.xml" type="application/rss+xml" title="Rob Coleman">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -169,14 +172,27 @@ if (!doNotTrack) {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="tags-heading">
+            <div class="post-heading">
               
-                <h1>Risk</h1>
-              
-              
-                <hr class="small">
+                <h1>Tracking Books</h1>
               
               
+              
+                
+                  <h2 class="post-subheading">Using R to Generate a booklist</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  Posted on February 2, 2019
+  
+  
+  
+</span>
+
+
               
             </div>
           </div>
@@ -187,64 +203,63 @@ if (!doNotTrack) {
 
 
     
-  <div class="container" role="main">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
         
-        <div class="posts-list">
-          
-            <article class="post-preview">
-              <a href="https://robcoleman.ca/notes/moralhazard/">
-                <h2 class="post-title">Notes on Moral hazard</h2>
 
-                
-                  <h3 class="post-subtitle">
-                    Risk approaches to contracting ALMPs
-                  </h3>
-                
-              </a>
+<p>I&rsquo;ve been trying to use <a href="http://www.goodreads.com/">goodreads</a> to track my reading progress and wondered how difficult it would be to recreate a list of my books here.  Turns out, very easy.  The following script quickly transforms the goodreads export file into a booklist in markdown that can be seen <a href="/page/books">here</a>.</p>
 
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  Posted on January 6, 2019
-  
-  
-  
-</span>
+<h3 id="step-1">Step 1</h3>
+
+<p>First export your goodreads activity and load it into R.  I use <code>clean_names</code> from the <a href="https://github.com/sfirke/janitor"><code>janitor</code></a> package - one of my favourite convenience functions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>tidyverse<span class="p">)</span>
+
+raw_goodreads <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#34;~/Downloads/goodreads_library_export.csv&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  janitor<span class="o">::</span>clean_names<span class="p">()</span></code></pre></div>
+<h3 id="step-2">Step 2</h3>
+
+<p>Next I tidy the dataset.  I wanted to show my rating as ⭐️ using the emoji <code>: star :</code> and <code>strrep</code> seemed to do the trick.  I also wanted to provide a link to the book via the title and some ugly <code>paste</code> code seemed to do the trick.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">star <span class="o">&lt;-</span> <span class="s">&#34;⭐️&#34;</span>
+
+raw_goodreads <span class="o">%&gt;%</span> 
+  filter<span class="p">(</span>my_rating <span class="o">!=</span> <span class="m">0</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#remove books i haven&#39;t rated</span>
+  filter<span class="p">(</span>date_added <span class="o">&gt;=</span> <span class="s">&#34;2018-01-01&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#only books since 2018</span>
+  mutate<span class="p">(</span>star_rating <span class="o">=</span> strrep<span class="p">(</span>star<span class="p">,</span> <span class="kp">as.integer</span><span class="p">(</span>my_rating<span class="p">)),</span> <span class="c1"># turn rating into stars</span>
+         linked_title <span class="o">=</span> <span class="kp">paste</span><span class="p">(</span><span class="s">&#34;[&#34;</span><span class="p">,</span> title<span class="p">,</span> <span class="s">&#34;]&#34;</span><span class="p">,</span> <span class="s">&#34;(https://www.goodreads.com/book/show/&#34;</span><span class="p">,</span> book_id<span class="p">,</span> <span class="s">&#34;)&#34;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1">#add links</span>
+  select<span class="p">(</span><span class="s">&#34;Title&#34;</span> <span class="o">=</span> linked_title<span class="p">,</span> <span class="s">&#34;Author&#34;</span> <span class="o">=</span> author<span class="p">,</span> <span class="s">&#34;Rating&#34;</span> <span class="o">=</span> star_rating<span class="p">)</span> <span class="o">%&gt;%</span> 
+  knitr<span class="o">::</span>kable<span class="p">()</span> </code></pre></div>
+<h3 id="step-3">Step 3</h3>
+
+<p>Not much else!  I added the <code>markdown</code> code to <a href="/page/books">/page/books</a> and now I can run the script whenever I want to update.  Head over to the <a href="/page/books">book list</a> to check out the results.</p>
 
 
-              </p>
-              <div class="post-entry">
-                
-                  Moral hazard in ALMPs Bruttel, Oliver 2005
- This research reviews the mechanisms by which government can manage the risks (moral hazard) associated with contracting out of ALMPs using a principal-agent theory lens. the author solves for the risks by advancing an integrated governance approach using 3 distinct governance mechanisms  incentives information control  reviews 3 countries (UK, Netherlands, Australia)  Principal-agent theory and moral hazard  concerned with how does govt (principal) ensure that service providers (agents) act in the govts interest main risk is moral hazard where agents act in their own interest (maximising utility, risk avoidance etc) where principal cannot observe their actions moral hazard in ALMPs revolve around 3 key areas:  creaming - selecting only optimal clients for service parking - not serving clients with low success probability dead-weight - serving clients who would have otherwise been successful without intervention (not explicitly mentioned but described elsewhere)   1.
-                  <a href="https://robcoleman.ca/notes/moralhazard/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://robcoleman.ca/tags/almps/">ALMPs</a>&nbsp;
-                  
-                    <a href="https://robcoleman.ca/tags/risk/">risk</a>&nbsp;
-                  
-                    <a href="https://robcoleman.ca/tags/moral-hazard/">moral hazard</a>&nbsp;
-                  
-                    <a href="https://robcoleman.ca/tags/principle-agent/">principle-agent</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-        </div>
         
-      </div>
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://robcoleman.ca/post/summer_reading/" data-toggle="tooltip" data-placement="top" title="Summer reading">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
     </div>
   </div>
+</div>
 
     <footer>
   <div class="container">
@@ -287,7 +302,7 @@ if (!doNotTrack) {
           
           <li>
             
-            <a href="https://robcoleman.ca/tags/risk/index.xml" title="RSS">
+            <a href="https://robcoleman.ca/index.xml" title="RSS">
             
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>

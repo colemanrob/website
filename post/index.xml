@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Sun, 30 Sep 2018 17:25:23 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 02 Feb 2019 16:39:00 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tracking Books</title>
+      <link>https://robcoleman.ca/post/booklist/</link>
+      <pubDate>Sat, 02 Feb 2019 16:39:00 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/post/booklist/</guid>
+      <description>I&amp;rsquo;ve been trying to use goodreads to track my reading progress and wondered how difficult it would be to recreate a list of my books here. Turns out, very easy. The following script quickly transforms the goodreads export file into a booklist in markdown that can be seen here.
+Step 1 First export your goodreads activity and load it into R. I use clean_names from the janitor package - one of my favourite convenience functions.</description>
+    </item>
     
     <item>
       <title>Summer reading</title>

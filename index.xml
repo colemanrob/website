@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Sun, 06 Jan 2019 17:52:48 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 02 Feb 2019 16:39:00 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tracking Books</title>
+      <link>https://robcoleman.ca/post/booklist/</link>
+      <pubDate>Sat, 02 Feb 2019 16:39:00 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/post/booklist/</guid>
+      <description>I&amp;rsquo;ve been trying to use goodreads to track my reading progress and wondered how difficult it would be to recreate a list of my books here. Turns out, very easy. The following script quickly transforms the goodreads export file into a booklist in markdown that can be seen here.
+Step 1 First export your goodreads activity and load it into R. I use clean_names from the janitor package - one of my favourite convenience functions.</description>
+    </item>
     
     <item>
       <title>Notes on Moral hazard</title>
@@ -125,6 +135,15 @@ nocs &amp;lt;- read_html(&amp;#34;http://noc.esdc.gc.ca/English/NOC/QuickSearch.
 I live in the frozen Canadian north with my partner and this guy:
   View this post on Instagram        Barn yard!
 A post shared by Rob (@robcoleman) on Aug 24, 2017 at 3:04pm PDT</description>
+    </item>
+    
+    <item>
+      <title>Books</title>
+      <link>https://robcoleman.ca/page/books/</link>
+      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/page/books/</guid>
+      <description>2019    Title Author Rating     Just Mercy: A Story of Justice and Redemption Bryan Stevenson ⭐️⭐️⭐️⭐️⭐️   The Black Swan: The Impact of the Highly Improbable Nassim Nicholas Taleb ⭐️⭐️⭐️    2018    Title Author Rating     The Great Stagnation: How America Ate All the Low-Hanging Fruit of Modern History, Got Sick, and Will (Eventually) Feel Better Tyler Cowen ⭐️⭐️⭐️⭐️   Educated Tara Westover ⭐️⭐️⭐️⭐️⭐️   The Undoing Project: A Friendship That Changed Our Minds Michael Lewis ⭐️⭐️⭐️   Seven Fallen Feathers: Racism, Death, and Hard Truths in a Northern City Tanya Talaga ⭐️⭐️⭐️⭐️   Robot-Proof: Higher Education in the Age of Artificial Intelligence Joseph E.</description>
     </item>
     
   </channel>
