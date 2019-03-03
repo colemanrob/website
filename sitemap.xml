@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://robcoleman.ca/post/commute/</loc>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://robcoleman.ca/post/booklist/</loc>
     <lastmod>2019-02-02T16:39:00-05:00</lastmod>
   </url>
@@ -103,7 +108,13 @@
   
   <url>
     <loc>https://robcoleman.ca/tags/census/</loc>
-    <lastmod>2017-12-15T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/commute/</loc>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -127,7 +138,7 @@
   
   <url>
     <loc>https://robcoleman.ca/tags/open-data/</loc>
-    <lastmod>2018-03-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -139,7 +150,7 @@
   
   <url>
     <loc>https://robcoleman.ca/post/</loc>
-    <lastmod>2019-02-02T16:39:00-05:00</lastmod>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -163,7 +174,7 @@
   
   <url>
     <loc>https://robcoleman.ca/</loc>
-    <lastmod>2019-02-02T16:39:00-05:00</lastmod>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   

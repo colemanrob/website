@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Analyzing Commuting Patterns in Ontario</title>
+  <meta property="og:title" content="Analyzing Commuting Patterns in Ontario" />
+  <meta name="twitter:title" content="Analyzing Commuting Patterns in Ontario" />
+  <meta name="description" content="I was inspired by David Robinson&rsquo;s latest webcast in which he made a heatmap of French train delays using geom_tile and wanted to try it out for myself.
+ In this week&#39;s #tidytuesday screencast, I analyze delays in French train stations 🇫🇷🚄
+I show how to create heatmaps of delays (inspired by @noccaea!), and embarrass myself with even the simplest French pronunciationshttps://t.co/zBrkIkdcCz #rstats pic.twitter.com/RI7ZpxV89X
+&mdash; David Robinson (@drob) February 26, 2019">
+  <meta property="og:description" content="I was inspired by David Robinson&rsquo;s latest webcast in which he made a heatmap of French train delays using geom_tile and wanted to try it out for myself.
+ In this week&#39;s #tidytuesday screencast, I analyze delays in French train stations 🇫🇷🚄
+I show how to create heatmaps of delays (inspired by @noccaea!), and embarrass myself with even the simplest French pronunciationshttps://t.co/zBrkIkdcCz #rstats pic.twitter.com/RI7ZpxV89X
+&mdash; David Robinson (@drob) February 26, 2019">
+  <meta name="twitter:description" content="I was inspired by David Robinson&rsquo;s latest webcast in which he made a heatmap of French train delays using geom_tile and wanted to try it out for myself.
+ In this week&#39;s #tidytuesday …">
+  <meta name="author" content="Rob Coleman"/>
+  <link href='https://robcoleman.ca/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@coleman" />
+  <meta name="twitter:creator" content="@coleman" />
+  <meta property="og:url" content="https://robcoleman.ca/post/commute/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rob Coleman" />
+
+  <meta name="generator" content="Hugo 0.54.0" />
+  <link rel="canonical" href="https://robcoleman.ca/post/commute/" />
+  <link rel="alternate" href="https://robcoleman.ca/index.xml" type="application/rss+xml" title="Rob Coleman">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://robcoleman.ca/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://robcoleman.ca/css/highlight.min.css" /><link rel="stylesheet" href="https://robcoleman.ca/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-73411487-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://robcoleman.ca">Rob Coleman</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Books" href="/page/books/">Books</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Notes" href="/notes">Notes</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Analyzing Commuting Patterns in Ontario</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  Posted on March 3, 2019
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<p>I was inspired by <a href="http://varianceexplained.org/">David Robinson</a>&rsquo;s latest webcast in which he made a heatmap of French train delays using <code>geom_tile</code> and wanted to try it out for myself.</p>
+
+<p><center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">In this week&#39;s <a href="https://twitter.com/hashtag/tidytuesday?src=hash&amp;ref_src=twsrc%5Etfw">#tidytuesday</a> screencast, I analyze delays in French train stations 🇫🇷🚄<br><br>I show how to create heatmaps of delays (inspired by <a href="https://twitter.com/noccaea?ref_src=twsrc%5Etfw">@noccaea</a>!), and embarrass myself with even the simplest French pronunciations<a href="https://t.co/zBrkIkdcCz">https://t.co/zBrkIkdcCz</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/RI7ZpxV89X">pic.twitter.com/RI7ZpxV89X</a></p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/1100456189752688640?ref_src=twsrc%5Etfw">February 26, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</center></p>
+
+<p>I don&rsquo;t have a lot of opportunities to use heatmaps, but recently Statcan has released their <a href="https://www12.statcan.gc.ca/census-recensement/2016/rt-td/jtw-ddt-eng.cfm">Journey to Work</a> data as part of the 2016 Census.  I wanted to see if I could use a heatmap to understand the commuting patterns in communities in southern Ontario.</p>
+
+<h3 id="load-packages">Load packages</h3>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>tidyverse<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>cancensus<span class="p">)</span></code></pre></div>
+<p>I downloaded the <a href="https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/dt-td/Rp-eng.cfm?LANG=E&amp;APATH=3&amp;DETAIL=0&amp;DIM=0&amp;FL=A&amp;FREE=0&amp;GC=0&amp;GID=0&amp;GK=0&amp;GRP=1&amp;PID=113344&amp;PRID=10&amp;PTYPE=109445&amp;S=0&amp;SHOWALL=0&amp;SUB=0&amp;Temporal=2017&amp;THEME=125&amp;VID=0&amp;VNAMEE=&amp;VNAMEF=">commuting table</a> from statscan because I couldn&rsquo;t find it using the <code>cancensus</code> package.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">raw_commute <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#34;~/projects/R stuff/commute/98-400-X2016391_English_CSV_data.csv&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+    janitor<span class="o">::</span>clean_names<span class="p">()</span> <span class="o">%&gt;%</span> 
+    select<span class="p">(</span>code <span class="o">=</span> geo_code_por<span class="p">,</span>
+           live <span class="o">=</span> geo_name<span class="p">,</span>
+           work <span class="o">=</span> geo_name_1<span class="p">,</span>
+           total <span class="o">=</span> dim_sex_3_member_id_1_total_sex<span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># filter only those whose code starts w/ 35 (Ontario)</span>
+ontario_commute <span class="o">&lt;-</span> raw_commute <span class="o">%&gt;%</span> 
+    filter<span class="p">(</span>str_detect<span class="p">(</span>code<span class="p">,</span> pattern <span class="o">=</span> <span class="s">&#34;^35&#34;</span><span class="p">))</span> </code></pre></div>
+<h3 id="download-geography-data">Download geography data</h3>
+
+<p>I was able to retrieve the working age population and census division geographies using <code>cancensus</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>cancensus<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>sf<span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">## Linking to GEOS 3.7.0, GDAL 2.3.2, PROJ 5.2.0</pre></div><div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># create list of ontario census divisions to pass to cancensus</span>
+regions_list_ontario <span class="o">&lt;-</span> list_census_regions<span class="p">(</span><span class="s">&#34;CA16&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  filter<span class="p">(</span>str_detect<span class="p">(</span>region<span class="p">,</span> pattern <span class="o">=</span> <span class="s">&#34;^35&#34;</span><span class="p">))</span>  <span class="o">%&gt;%</span> 
+  as_census_region_list</code></pre></div><div class="highlight"><pre class="chroma">## Querying CensusMapper API for regions data...</pre></div><div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">pop_data <span class="o">&lt;-</span> get_census<span class="p">(</span><span class="s">&#34;CA16&#34;</span><span class="p">,</span>
+                           regions <span class="o">=</span> regions_list_ontario<span class="p">,</span>
+                           vectors <span class="o">=</span> <span class="s">&#34;v_CA16_61&#34;</span><span class="p">,</span>
+                           level <span class="o">=</span> <span class="s">&#34;CD&#34;</span><span class="p">,</span>
+                       geo_format <span class="o">=</span> <span class="s">&#34;sf&#34;</span><span class="p">,</span> labels <span class="o">=</span> <span class="s">&#34;short&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  janitor<span class="o">::</span>clean_names<span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># clean</span>
+pop_data <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>working_age <span class="o">=</span> v_ca16_61<span class="p">)</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>code <span class="o">=</span> <span class="kp">as.double</span><span class="p">(</span>geo_uid<span class="p">))</span> <span class="o">%&gt;%</span> 
+  select<span class="p">(</span>code<span class="p">,</span> working_age<span class="p">,</span> shape_area<span class="p">,</span> geometry<span class="p">)</span> <span class="o">-&gt;</span> pop_data_clean</code></pre></div>
+<h3 id="joining-the-tables-together">Joining the tables together</h3>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># remove commuting within cd, compute totals</span>
+ontario_commute <span class="o">%&gt;%</span> 
+  filter<span class="p">(</span>live <span class="o">!=</span> work<span class="p">)</span> <span class="o">%&gt;%</span>
+  group_by<span class="p">(</span>live<span class="p">)</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>total_commuters <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>total<span class="p">),</span>
+         prop_commuters <span class="o">=</span> total <span class="o">/</span> total_commuters <span class="p">)</span> <span class="o">%&gt;%</span> 
+  ungroup<span class="p">()</span> <span class="o">%&gt;%</span> 
+  left_join<span class="p">(</span>pop_data_clean<span class="p">,</span> by <span class="o">=</span> <span class="s">&#34;code&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  group_by<span class="p">(</span>work<span class="p">)</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>total_commuters_destination <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>total<span class="p">))</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>live_prop <span class="o">=</span> total_commuters <span class="o">/</span> working_age<span class="p">,</span>
+         work_prop <span class="o">=</span> total <span class="o">/</span> working_age <span class="p">)</span> <span class="o">%&gt;%</span> 
+  ungroup<span class="p">()</span> <span class="o">-&gt;</span> ontario_commute_clean</code></pre></div>
+<h3 id="create-visualizations">Create visualizations</h3>
+
+<p>Let&rsquo;s see what visualizations will work.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">ontario_commute_clean <span class="o">%&gt;%</span> 
+    filter<span class="p">(</span>total <span class="o">&gt;=</span> <span class="m">3000</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+    mutate<span class="p">(</span>live <span class="o">=</span> str_wrap<span class="p">(</span>live<span class="p">,</span> width <span class="o">=</span> <span class="m">15</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+    mutate<span class="p">(</span>live <span class="o">=</span> fct_reorder<span class="p">(</span>live<span class="p">,</span> total<span class="p">))</span> <span class="o">%&gt;%</span> 
+    mutate<span class="p">(</span>work <span class="o">=</span> fct_reorder<span class="p">(</span>work<span class="p">,</span> total<span class="p">))</span> <span class="o">%&gt;%</span> 
+    ggplot<span class="p">(</span>aes<span class="p">(</span>live<span class="p">,</span> work<span class="p">,</span> fill <span class="o">=</span> total<span class="p">))</span> <span class="o">+</span>
+    geom_tile<span class="p">(</span>alpha <span class="o">=</span> <span class="m">0.7</span><span class="p">)</span> <span class="o">+</span>
+    theme_light<span class="p">()</span> <span class="o">+</span>
+    theme<span class="p">(</span>axis.text.x <span class="o">=</span> element_text<span class="p">(</span>angle <span class="o">=</span> <span class="m">90</span><span class="p">,</span> hjust <span class="o">=</span> <span class="m">1</span><span class="p">))</span> <span class="o">+</span>
+    scale_fill_viridis_c<span class="p">(</span>labels <span class="o">=</span> scales<span class="o">::</span>comma_format<span class="p">())</span> <span class="o">+</span>
+    labs<span class="p">(</span>fill <span class="o">=</span> <span class="s">&#34;# of commuters&#34;</span><span class="p">,</span>
+         title <span class="o">=</span> <span class="s">&#34;The largest number of commuters in Ontario are those who live in York, Peel and Durham who commute to Toronto for work&#34;</span><span class="p">,</span>
+         subtitle <span class="o">=</span> <span class="s">&#34;Number of employed labour force aged 15+ who commute by Census Division - Minimum 3,000 commuters to be represented&#34;</span><span class="p">,</span>
+         x <span class="o">=</span> <span class="s">&#34;Live - Census Division&#34;</span><span class="p">,</span>
+         y <span class="o">=</span> <span class="s">&#34;Work - Census Division&#34;</span><span class="p">,</span>
+         caption <span class="o">=</span> <span class="s">&#34;Data from Statistics Canada 2016 Canadian Census - Journey to Work \n https://www12.statcan.gc.ca/census-recensement/2016/rt-td/jtw-ddt-eng.cfm&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/img/commute.png" alt="" /></p>
+
+<h3 id="map-the-proportions">Map the proportions</h3>
+
+<p>I&rsquo;m always trying to improve my mapping skills and <code>geom_sf</code> makes it a lot easier.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">ontario_commute_clean <span class="o">%&gt;%</span> 
+  filter<span class="p">((</span><span class="o">!</span>live <span class="o">%in%</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;Rainy River&#34;</span><span class="p">,</span> <span class="s">&#34;Kenora&#34;</span><span class="p">,</span> <span class="s">&#34;Thunder Bay&#34;</span><span class="p">,</span> <span class="s">&#34;Algoma&#34;</span><span class="p">,</span> <span class="s">&#34;Nipissing&#34;</span><span class="p">,</span> 
+                       <span class="s">&#34;Cochrane&#34;</span><span class="p">,</span> <span class="s">&#34;Greater Sudbury / Grand Sudbury&#34;</span><span class="p">,</span> <span class="s">&#34;Manitoulin&#34;</span><span class="p">,</span>
+                       <span class="s">&#34;Timiskaming&#34;</span><span class="p">,</span> <span class="s">&#34;Sudbury&#34;</span><span class="p">,</span> <span class="s">&#34;Parry Sound&#34;</span><span class="p">)))</span> <span class="o">%&gt;%</span> 
+  ggplot<span class="p">()</span> <span class="o">+</span>
+  geom_sf<span class="p">(</span>aes<span class="p">(</span>fill <span class="o">=</span> live_prop<span class="p">))</span> <span class="o">+</span>
+  scale_fill_viridis_c<span class="p">(</span><span class="s">&#34;% Labour force who commute to work&#34;</span><span class="p">,</span> labels <span class="o">=</span> scales<span class="o">::</span>percent<span class="p">)</span> <span class="o">+</span> theme_minimal<span class="p">()</span> <span class="o">+</span>
+  theme<span class="p">(</span>panel.grid <span class="o">=</span> element_blank<span class="p">(),</span>
+        axis.text <span class="o">=</span> element_blank<span class="p">(),</span>
+        axis.ticks <span class="o">=</span> element_blank<span class="p">())</span> <span class="o">+</span> 
+  coord_sf<span class="p">(</span>datum<span class="o">=</span><span class="kc">NA</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;The % of the labour force (aged 15+) who commute by Census Division in Southern Ontario&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/img/map.png" alt="" /></p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://robcoleman.ca/tags/open-data/">open data</a>&nbsp;
+            
+              <a href="https://robcoleman.ca/tags/census/">census</a>&nbsp;
+            
+              <a href="https://robcoleman.ca/tags/commute/">commute</a>&nbsp;
+            
+          </div>
+        
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://robcoleman.ca/post/booklist/" data-toggle="tooltip" data-placement="top" title="Tracking Books">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:coleman.rob&#43;nospam@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/colemanrob" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/coleman" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/robcoleman" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://robcoleman.ca/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="robcoleman.ca">Rob Coleman</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2019
+
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://robcoleman.ca/js/main.js"></script>
+<script src="https://robcoleman.ca/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://robcoleman.ca/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

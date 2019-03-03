@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
     <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Sun, 18 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2019 10:16:59 -0500</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/tags/open-data/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Analyzing Commuting Patterns in Ontario</title>
+      <link>https://robcoleman.ca/post/commute/</link>
+      <pubDate>Sun, 03 Mar 2019 10:16:59 -0500</pubDate>
+      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
+      <guid>https://robcoleman.ca/post/commute/</guid>
+      <description>I was inspired by David Robinson&amp;rsquo;s latest webcast in which he made a heatmap of French train delays using geom_tile and wanted to try it out for myself.
+ In this week&amp;#39;s #tidytuesday screencast, I analyze delays in French train stations 🇫🇷🚄
+I show how to create heatmaps of delays (inspired by @noccaea!), and embarrass myself with even the simplest French pronunciationshttps://t.co/zBrkIkdcCz #rstats pic.twitter.com/RI7ZpxV89X
+&amp;mdash; David Robinson (@drob) February 26, 2019</description>
+    </item>
     
     <item>
       <title>Using Open Data to map Bill 148 effects</title>
