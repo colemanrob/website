@@ -1,250 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Mapping the effects of minimum wage changes in Ontario using R'>
+<meta name='theme-color' content='#ffcd00'>
 
-  <title>Using Open Data to map Bill 148 effects</title>
-  <meta property="og:title" content="Using Open Data to map Bill 148 effects" />
-  <meta name="twitter:title" content="Using Open Data to map Bill 148 effects" />
-  <meta name="description" content="Mapping the effects of minimum wage changes in Ontario using R">
-  <meta property="og:description" content="Mapping the effects of minimum wage changes in Ontario using R">
-  <meta name="twitter:description" content="Mapping the effects of minimum wage changes in Ontario using R">
-  <meta name="author" content="Rob Coleman"/>
-  <link href='https://robcoleman.ca/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@coleman" />
-  <meta name="twitter:creator" content="@coleman" />
-  <meta property="og:url" content="https://robcoleman.ca/post/writeup/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Rob Coleman" />
+<meta property='og:title' content='Using Open Data to map Bill 148 effects • Rob Coleman'>
+<meta property='og:description' content='Mapping the effects of minimum wage changes in Ontario using R'>
+<meta property='og:url' content='http://robcoleman.ca/post/writeup/'>
+<meta property='og:site_name' content='Rob Coleman'>
+<meta property='og:type' content='article'><meta property='article:section' content='post'><meta property='article:tag' content='Open Data'><meta property='article:tag' content='Minimum wage'><meta property='article:published_time' content='2018-03-18T00:00:00Z'/><meta property='article:modified_time' content='2018-03-18T00:00:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@coleman'>
 
-  <meta name="generator" content="Hugo 0.54.0" />
-  <link rel="canonical" href="https://robcoleman.ca/post/writeup/" />
-  <link rel="alternate" href="https://robcoleman.ca/index.xml" type="application/rss+xml" title="Rob Coleman">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://robcoleman.ca/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://robcoleman.ca/css/highlight.min.css" /><link rel="stylesheet" href="https://robcoleman.ca/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<meta name="generator" content="Hugo 0.55.6" />
 
+  <title>Using Open Data to map Bill 148 effects • Rob Coleman</title>
+  <link rel='canonical' href='http://robcoleman.ca/post/writeup/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.6a060eb7.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
 
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-73411487-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+  
 
 </head>
+<body class='page type-post'>
 
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://robcoleman.ca">Rob Coleman</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="Blog" href="/">Blog</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="About" href="/page/about/">About</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Books" href="/page/books/">Books</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Notes" href="/notes">Notes</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Tags" href="/tags">Tags</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
-    </div>
-
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
     
-
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/post/'>Code</a>
+      </li><li class='item'>
+        <a href='/notes/'>notes</a>
+      </li><li class='item'>
+        <a href='/books/'>books</a>
+      </li><li class='item'>
+        <a href='/about/'>About</a>
+      </li></ul>
   </div>
-</nav>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
 
-
-
-
-    
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Rob Coleman</p><p class='desc site-desc'>Notes on data science, books and labour market policy</p>
           </div>
         </div>
-      </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Using Open Data to map Bill 148 effects</h1>
+      
+<p class='desc'>Mapping the effects of minimum wage changes in Ontario using R</p>
+
+
     </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2018-03-18T00:00:00Z'>2018-03-18</time>
+</span>
+
+  
+  
+
 </div>
 
 
-  
-  
-  
-
-
-
-
-
+  </div>
+</header>
 
   
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>Using Open Data to map Bill 148 effects</h1>
-              
-              
-              
-              
-                <span class="post-meta">
   
+
+  <div class='container entry-content'>
   
-  Posted on March 18, 2018
-  
-  
-  
-</span>
 
-
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-    
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        
-
-<p>I covered some interesting changes to minimum wage in my <a href="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/">last post</a>. I&rsquo;m trying to build my skills in the mapping department, so I&rsquo;m going to create an interactive map of the communities most affected by the change in minimum wage.</p>
+<p>I covered some interesting changes to minimum wage in my <a href="https://robcoleman.ca/blog/minimum-wage-changes-in-ontario/" target="_blank">last post</a>. I&rsquo;m trying to build my skills in the mapping department, so I&rsquo;m going to create an interactive map of the communities most affected by the change in minimum wage.</p>
 
 <h2 id="loading-the-data">Loading the data</h2>
 
-<p>The wage data is collected by the Canadian federal government and published as an <a href="https://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116">open dataset</a> available for download. The data is geographically organized by <a href="https://www.statcan.gc.ca/pub/92-195-x/2011001/geo/er-re/er-re-eng.htm">economic region</a>, so we&rsquo;ll need the shapefile for those boundaries which is also published as an <a href="https://open.canada.ca/data/en/dataset/c1242d53-3cef-4733-bafe-7492453c7e49">open dataset</a>!</p>
-<div class="highlight"><pre class="chroma">## Reading layer `ler_000b16a_e&#39; from data source `c:\Users\rob\Documents\projects\minwage_map\map_data&#39; using driver `ESRI Shapefile&#39;
+<p>The wage data is collected by the Canadian federal government and published as an <a href="https://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116" target="_blank">open dataset</a> available for download. The data is geographically organized by <a href="https://www.statcan.gc.ca/pub/92-195-x/2011001/geo/er-re/er-re-eng.htm" target="_blank">economic region</a>, so we&rsquo;ll need the shapefile for those boundaries which is also published as an <a href="https://open.canada.ca/data/en/dataset/c1242d53-3cef-4733-bafe-7492453c7e49" target="_blank">open dataset</a>!</p>
+
+<pre><code>## Reading layer `ler_000b16a_e' from data source `c:\Users\rob\Documents\projects\minwage_map\map_data' using driver `ESRI Shapefile'
 ## Simple feature collection with 76 features and 4 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
 ## bbox:           xmin: 3689439 ymin: 659338.9 xmax: 9015737 ymax: 5242179
 ## epsg (SRID):    NA
-## proj4string:    +proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +datum=NAD83 +units=m +no_defs</pre></div>
+## proj4string:    +proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +datum=NAD83 +units=m +no_defs
+</code></pre>
+
 <h2 id="clean-the-wage-data">Clean the Wage data</h2>
 
 <p>The data has a mix of wage types (hourly, annually) from a variety of sources. For my purposes I&rsquo;ll take the median wage for those occupations where it&rsquo;s reported hourly and ignore the annual data.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># clean data</span>
-ON_wage_data <span class="o">&lt;-</span> wage_data <span class="o">%&gt;%</span>
-  filter<span class="p">(</span>PROV <span class="o">==</span> <span class="s">&#34;ON&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#filer ON results only</span>
-  filter<span class="p">(</span><span class="sb">`Annual Wage Flag_Salaire annuel`</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#remove annual salaries</span>
-  filter<span class="p">(</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span><span class="sb">`Median wage_Salaire Median`</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1">#remove occupations with missing data</span>
-  filter<span class="p">(</span><span class="o">!</span><span class="sb">`ER Code_Code RE`</span> <span class="o">==</span> <span class="s">&#34;ER35&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1">#remove Ontario total</span>
-  mutate<span class="p">(</span>ERUID <span class="o">=</span> str_sub<span class="p">(</span><span class="sb">`ER Code_Code RE`</span><span class="p">,</span> start<span class="o">=</span><span class="m">3L</span><span class="p">))</span> <span class="c1"># remove ER from ER Code so it can be joined</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># clean data</span>
+ON_wage_data <span style="color:#f92672">&lt;-</span> wage_data <span style="color:#f92672">%&gt;%</span>
+  filter(PROV <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ON&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#filer ON results only</span>
+  filter(<span style="color:#e6db74">`Annual Wage Flag_Salaire annuel`</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#remove annual salaries</span>
+  filter(<span style="color:#f92672">!</span><span style="color:#66d9ef">is.na</span>(<span style="color:#e6db74">`Median wage_Salaire Median`</span>)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#remove occupations with missing data</span>
+  filter(<span style="color:#f92672">!</span><span style="color:#e6db74">`ER Code_Code RE`</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ER35&#34;</span>) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e">#remove Ontario total</span>
+  mutate(ERUID <span style="color:#f92672">=</span> str_sub(<span style="color:#e6db74">`ER Code_Code RE`</span>, start<span style="color:#f92672">=</span><span style="color:#ae81ff">3L</span>)) <span style="color:#75715e"># remove ER from ER Code so it can be joined</span>
 
 
-<span class="c1"># how many low wage by community</span>
+<span style="color:#75715e"># how many low wage by community</span>
 
-ON_wage_prop <span class="o">&lt;-</span> ON_wage_data <span class="o">%&gt;%</span>
-  mutate<span class="p">(</span>low_wage <span class="o">=</span> case_when<span class="p">(</span>
-    <span class="sb">`Median wage_Salaire Median`</span> <span class="o">&lt;=</span> <span class="m">14</span> <span class="o">~</span> <span class="m">1</span><span class="p">,</span>
-    <span class="kc">TRUE</span> <span class="o">~</span> <span class="m">0</span>
-  <span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1"># add a low wage indicator</span>
-  group_by<span class="p">(</span><span class="sb">`ERNAME`</span> <span class="o">=</span> <span class="sb">`ER Name_Nom RE`</span><span class="p">,</span> ERUID<span class="p">)</span> <span class="o">%&gt;%</span>
-  summarise<span class="p">(</span>total_occupations <span class="o">=</span> n_distinct<span class="p">(</span>NOC_CNP<span class="p">),</span>
-            total_low_wage <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>low_wage<span class="p">))</span> <span class="o">%&gt;%</span>
-  mutate<span class="p">(</span>prop_low_wage <span class="o">=</span> <span class="kp">round</span><span class="p">(</span>total_low_wage <span class="o">/</span> total_occupations <span class="o">*</span> <span class="m">100</span><span class="p">))</span> <span class="c1"># compute the proportion of occupations that are low wage</span>
+ON_wage_prop <span style="color:#f92672">&lt;-</span> ON_wage_data <span style="color:#f92672">%&gt;%</span>
+  mutate(low_wage <span style="color:#f92672">=</span> case_when(
+    <span style="color:#e6db74">`Median wage_Salaire Median`</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">1</span>,
+    <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">0</span>
+  )) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># add a low wage indicator</span>
+  group_by(<span style="color:#e6db74">`ERNAME`</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`ER Name_Nom RE`</span>, ERUID) <span style="color:#f92672">%&gt;%</span>
+  summarise(total_occupations <span style="color:#f92672">=</span> n_distinct(NOC_CNP),
+            total_low_wage <span style="color:#f92672">=</span> <span style="color:#66d9ef">sum</span>(low_wage)) <span style="color:#f92672">%&gt;%</span>
+  mutate(prop_low_wage <span style="color:#f92672">=</span> <span style="color:#66d9ef">round</span>(total_low_wage <span style="color:#f92672">/</span> total_occupations <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>)) <span style="color:#75715e"># compute the proportion of occupations that are low wage</span>
 
-<span class="c1"># results</span>
-ON_wage_prop <span class="o">%&gt;%</span>
-  arrange<span class="p">(</span>desc<span class="p">(</span>prop_low_wage<span class="p">))</span> <span class="o">%&gt;%</span>
-  kable<span class="p">()</span></code></pre></div>
+<span style="color:#75715e"># results</span>
+ON_wage_prop <span style="color:#f92672">%&gt;%</span>
+  arrange(desc(prop_low_wage)) <span style="color:#f92672">%&gt;%</span>
+  kable()</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -348,20 +240,21 @@ ON_wage_prop <span class="o">%&gt;%</span>
 </table>
 
 <h2 id="join-the-data">Join the data</h2>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># subset just ontario ERs</span>
-ON_ERs <span class="o">&lt;-</span> CAN_ERs <span class="o">%&gt;%</span>
-  filter<span class="p">(</span>PRNAME<span class="o">==</span> <span class="s">&#34;Ontario&#34;</span><span class="p">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># subset just ontario ERs</span>
+ON_ERs <span style="color:#f92672">&lt;-</span> CAN_ERs <span style="color:#f92672">%&gt;%</span>
+  filter(PRNAME<span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Ontario&#34;</span>)
 
 
-<span class="c1">#see if it the subset worked</span>
-plot<span class="p">(</span>ON_ERs<span class="p">)</span></code></pre></div>
+<span style="color:#75715e">#see if it the subset worked</span>
+plot(ON_ERs)</code></pre></div>
 <p><a href="/img/ON.png"><img src="/img/ON.png" alt="" /></a></p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#join the data to the boundary file</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e">#join the data to the boundary file</span>
 
-merged_ON <span class="o">&lt;-</span> <span class="kp">merge</span><span class="p">(</span>ON_ERs<span class="p">,</span> ON_wage_prop<span class="p">,</span> by <span class="o">=</span> <span class="s">&#34;ERUID&#34;</span><span class="p">)</span>
+merged_ON <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">merge</span>(ON_ERs, ON_wage_prop, by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ERUID&#34;</span>)
 
-<span class="c1">#did it work?</span>
-<span class="kp">summary</span><span class="p">(</span>merged_ON<span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">##      ERUID                          ERNAME.x     PRUID   
+<span style="color:#75715e">#did it work?</span>
+<span style="color:#66d9ef">summary</span>(merged_ON)</code></pre></div>
+<pre><code>##      ERUID                          ERNAME.x     PRUID   
 ##  3510   :1   Hamilton--Niagara Peninsula:1   35     :11  
 ##  3515   :1   Kingston--Pembroke         :1   10     : 0  
 ##  3520   :1   Kitchener--Waterloo--Barrie:1   11     : 0  
@@ -392,48 +285,50 @@ merged_ON <span class="o">&lt;-</span> <span class="kp">merge</span><span class=
 ##                    
 ##                    
 ##                    
-##</pre></div>
+##
+</code></pre>
+
 <h2 id="build-the-map">Build the map</h2>
 
 <p>When I first started building the map with <code>leaflet</code> I kept getting this error:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">leaflet<span class="p">(</span>merged_ON<span class="p">)</span>  </code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">leaflet(merged_ON)  </code></pre></div>
 <p><code>Warning messages: 1: sf layer is not long-lat data  2: sf layer has inconsistent datum (+proj=lcc +lat_1=49 +lat_2=77 +lat_0=63.390675 +lon_0=-91.86666666666666 +x_0=6200000 +y_0=3000000 +datum=NAD83 +units=m +no_defs). Need '+proj=longlat +datum=WGS84'</code></p>
 
 <p>I used <code>st_transform</code> to change from <code>datum=NAD83</code> to <code>datum=WGS84</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">new_ON <span class="o">&lt;-</span> st_transform<span class="p">(</span>merged_ON<span class="p">,</span> <span class="s">&#34;+proj=longlat&#34;</span><span class="p">,</span> <span class="s">&#34;+datum=WGS84&#34;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">new_ON <span style="color:#f92672">&lt;-</span> st_transform(merged_ON, <span style="color:#e6db74">&#34;+proj=longlat&#34;</span>, <span style="color:#e6db74">&#34;+datum=WGS84&#34;</span>)</code></pre></div>
 <p>That managed to allow me to use <code>leaflet</code> without throwing up an errors.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># set colours for cloropleth</span>
-bins <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span><span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">13</span><span class="p">)</span>
-pal <span class="o">&lt;-</span> colorBin<span class="p">(</span><span class="s">&#34;YlOrRd&#34;</span><span class="p">,</span> domain <span class="o">=</span> new_ON<span class="o">$</span>prop_low_wage<span class="p">,</span> bins <span class="o">=</span> bins<span class="p">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># set colours for cloropleth</span>
+bins <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>)
+pal <span style="color:#f92672">&lt;-</span> colorBin(<span style="color:#e6db74">&#34;YlOrRd&#34;</span>, domain <span style="color:#f92672">=</span> new_ON<span style="color:#f92672">$</span>prop_low_wage, bins <span style="color:#f92672">=</span> bins)
 
-<span class="c1"># create labels</span>
-labels <span class="o">&lt;-</span> <span class="kp">sprintf</span><span class="p">(</span>
-  <span class="s">&#34;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%d total occupations &lt;br/&gt; %i total low wage occupations&#34;</span><span class="p">,</span>
-  new_ON<span class="o">$</span>ERNAME.y<span class="p">,</span> new_ON<span class="o">$</span>total_occupations<span class="p">,</span> new_ON<span class="o">$</span>total_low_wage
-<span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">lapply</span><span class="p">(</span>htmltools<span class="o">::</span>HTML<span class="p">)</span>
+<span style="color:#75715e"># create labels</span>
+labels <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">sprintf</span>(
+  <span style="color:#e6db74">&#34;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%d total occupations &lt;br/&gt; %i total low wage occupations&#34;</span>,
+  new_ON<span style="color:#f92672">$</span>ERNAME.y, new_ON<span style="color:#f92672">$</span>total_occupations, new_ON<span style="color:#f92672">$</span>total_low_wage
+) <span style="color:#f92672">%&gt;%</span> <span style="color:#66d9ef">lapply</span>(htmltools<span style="color:#f92672">::</span>HTML)
 
-map <span class="o">&lt;-</span> leaflet<span class="p">(</span>new_ON<span class="p">)</span> <span class="o">%&gt;%</span>
-  addTiles<span class="p">()</span> <span class="o">%&gt;%</span>
-  addPolygons<span class="p">(</span>fillColor <span class="o">=</span> <span class="o">~</span>pal<span class="p">(</span>prop_low_wage<span class="p">),</span>
-              color <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span>
-              weight <span class="o">=</span> <span class="m">2</span><span class="p">,</span>
-              opacity <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
-              fillOpacity <span class="o">=</span> <span class="m">0.55</span><span class="p">,</span>
-              highlight <span class="o">=</span> highlightOptions<span class="p">(</span>
-                weight <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
-                color <span class="o">=</span> <span class="s">&#34;#666&#34;</span><span class="p">,</span>
-                dashArray <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span>
-                fillOpacity <span class="o">=</span> <span class="m">0.7</span><span class="p">,</span>
-                bringToFront <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
-              label <span class="o">=</span> <span class="kp">labels</span><span class="p">,</span>
-              labelOptions <span class="o">=</span> labelOptions<span class="p">(</span>
-                style <span class="o">=</span> <span class="kt">list</span><span class="p">(</span><span class="s">&#34;font-weight&#34;</span> <span class="o">=</span> <span class="s">&#34;normal&#34;</span><span class="p">,</span> padding <span class="o">=</span> <span class="s">&#34;3px 8px&#34;</span><span class="p">),</span>
-                textsize <span class="o">=</span> <span class="s">&#34;15px&#34;</span><span class="p">,</span>
-                direction <span class="o">=</span> <span class="s">&#34;auto&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
-  addLegend<span class="p">(</span><span class="s">&#34;topright&#34;</span><span class="p">,</span> pal <span class="o">=</span> pal<span class="p">,</span> values <span class="o">=</span> <span class="o">~</span>new_ON<span class="o">$</span>prop_low_wage<span class="p">,</span>
-            title <span class="o">=</span> <span class="s">&#34;% of low wage occupations&#34;</span><span class="p">,</span>
-            labFormat <span class="o">=</span> labelFormat<span class="p">(</span>prefix <span class="o">=</span> <span class="s">&#34;%&#34;</span><span class="p">),</span>
-            opacity <span class="o">=</span> <span class="m">1</span><span class="p">)</span></code></pre></div>
+map <span style="color:#f92672">&lt;-</span> leaflet(new_ON) <span style="color:#f92672">%&gt;%</span>
+  addTiles() <span style="color:#f92672">%&gt;%</span>
+  addPolygons(fillColor <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>pal(prop_low_wage),
+              color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;white&#34;</span>,
+              weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
+              opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+              fillOpacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.55</span>,
+              highlight <span style="color:#f92672">=</span> highlightOptions(
+                weight <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
+                color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#666&#34;</span>,
+                dashArray <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,
+                fillOpacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.7</span>,
+                bringToFront <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>),
+              label <span style="color:#f92672">=</span> <span style="color:#66d9ef">labels</span>,
+              labelOptions <span style="color:#f92672">=</span> labelOptions(
+                style <span style="color:#f92672">=</span> <span style="color:#66d9ef">list</span>(<span style="color:#e6db74">&#34;font-weight&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;normal&#34;</span>, padding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3px 8px&#34;</span>),
+                textsize <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;15px&#34;</span>,
+                direction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;auto&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+  addLegend(<span style="color:#e6db74">&#34;topright&#34;</span>, pal <span style="color:#f92672">=</span> pal, values <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>new_ON<span style="color:#f92672">$</span>prop_low_wage,
+            title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;% of low wage occupations&#34;</span>,
+            labFormat <span style="color:#f92672">=</span> labelFormat(prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%&#34;</span>),
+            opacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)</code></pre></div>
 <h2 id="map-of-ontario-economic-regions-by-low-wage">Map of Ontario Economic Regions by Low Wage</h2>
 
 <iframe seamless src="/leaflet/mymap.html" width="100%" height="500"></iframe>
@@ -441,140 +336,111 @@ map <span class="o">&lt;-</span> leaflet<span class="p">(</span>new_ON<span clas
 <h2 id="references">References</h2>
 
 <ul>
-<li>Jesse Sadler&rsquo;s excellent <a href="https://www.jessesadler.com/post/gis-with-r-intro/">GIS Intro with R</a></li>
-<li>The <code>sf</code> package <a href="https://cran.r-project.org/web/packages/sf/vignettes/sf1.html">vignette</a></li>
-<li>A good discussion on <a href="http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS2_MergingSpatialData_part1_Joins.html">merging spatial data</a></li>
-<li>This repo was really helpful <a href="https://cengel.github.io/rspatial/">Intro to mapping and spatial analysis</a></li>
+<li>Jesse Sadler&rsquo;s excellent <a href="https://www.jessesadler.com/post/gis-with-r-intro/" target="_blank">GIS Intro with R</a></li>
+<li>The <code>sf</code> package <a href="https://cran.r-project.org/web/packages/sf/vignettes/sf1.html" target="_blank">vignette</a></li>
+<li>A good discussion on <a href="http://www.nickeubank.com/wp-content/uploads/2015/10/RGIS2_MergingSpatialData_part1_Joins.html" target="_blank">merging spatial data</a></li>
+<li>This repo was really helpful <a href="https://cengel.github.io/rspatial/" target="_blank">Intro to mapping and spatial analysis</a></li>
 </ul>
 
-
-        
-          <div class="blog-tags">
-            
-              <a href="https://robcoleman.ca/tags/open-data/">Open Data</a>&nbsp;
-            
-              <a href="https://robcoleman.ca/tags/minimum-wage/">Minimum wage</a>&nbsp;
-            
-          </div>
-        
-
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://robcoleman.ca/post/minwage/" data-toggle="tooltip" data-placement="top" title="Minimum Wage Changes in Ontario">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://robcoleman.ca/post/summer_reading/" data-toggle="tooltip" data-placement="top" title="Summer reading">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
-        
-        
-      
-
-    </div>
-  </div>
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="mailto:coleman.rob&#43;nospam@gmail.com" title="Email me">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/colemanrob" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://twitter.com/coleman" title="Twitter">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/robcoleman" title="Instagram">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            
-            <a href="https://robcoleman.ca/index.xml" title="RSS">
-            
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="robcoleman.ca">Rob Coleman</a>
-            
-          
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/open-data/'>Open Data</a>, <a class='tag' href='/tags/minimum-wage/'>Minimum Wage</a></div>
 
-          &nbsp;&bull;&nbsp;
-          2019
-
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
-    </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://robcoleman.ca/js/main.js"></script>
-<script src="https://robcoleman.ca/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://robcoleman.ca/js/load-photoswipe.js"></script>
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/post/minwage/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Minimum Wage Changes in Ontario</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/post/commute/'>
+        <span class='screen-reader-text'>Next post: </span>Analyzing Commuting Patterns in Ontario<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
 
 
 
 
+      </main>
 
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/colemanrob' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/coleman' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/robcoleman' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:coleman.rob&#43;nospam@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p> &copy; 2017-2019 Rob Coleman </p>
+</div>
 
-  </body>
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src="/assets/js/"</script>
+
+<script src='/assets/js/main.67d669ac.js'></script><script src='/js/custom.js'></script>
+
+</body>
+
 </html>
 

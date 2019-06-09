@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Books on Rob Coleman</title>
-    <link>https://robcoleman.ca/tags/books/</link>
-    <description>Recent content in Books on Rob Coleman</description>
+    <title>books on Rob Coleman</title>
+    <link>http://robcoleman.ca/tags/books/</link>
+    <description>Recent content in books on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
-    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Sun, 30 Sep 2018 17:25:23 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://robcoleman.ca/tags/books/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://robcoleman.ca/tags/books/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Booklist &#43; ratings update</title>
+      <link>http://robcoleman.ca/books/books/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/books/books/</guid>
+      <description>2019    Title Author Rating     Measures of Success: React Less, Lead Better, Improve More Mark Graban ⭐️⭐️⭐️⭐️   Other Minds: The Octopus, the Sea, and the Deep Origins of Consciousness Peter Godfrey-Smith ⭐️⭐️⭐️   Bad Blood: Secrets and Lies in a Silicon Valley Startup John Carreyrou ⭐️⭐️⭐️⭐️⭐️   The Beginning of Infinity: Explanations That Transform the World David Deutsch ⭐️⭐️⭐️⭐️   Future Babble: Why Expert Predictions Fail - and Why We Believe Them Anyway Dan Gardner ⭐️⭐️   Better Now: Six Big Ideas to Improve Health Care for All Canadians Danielle Martin ⭐️⭐️⭐️⭐️   Just Mercy: A Story of Justice and Redemption Bryan Stevenson ⭐️⭐️⭐️⭐️⭐️   The Black Swan: The Impact of the Highly Improbable Nassim Nicholas Taleb ⭐️⭐️⭐️    2018    Title Author Rating     The Great Stagnation: How America Ate All the Low-Hanging Fruit of Modern History, Got Sick, and Will (Eventually) Feel Better Tyler Cowen ⭐️⭐️⭐️⭐️   Educated Tara Westover ⭐️⭐️⭐️⭐️⭐️   The Undoing Project: A Friendship That Changed Our Minds Michael Lewis ⭐️⭐️⭐️   Seven Fallen Feathers: Racism, Death, and Hard Truths in a Northern City Tanya Talaga ⭐️⭐️⭐️⭐️   Robot-Proof: Higher Education in the Age of Artificial Intelligence Joseph E.</description>
+    </item>
+    
+    <item>
       <title>Summer reading</title>
-      <link>https://robcoleman.ca/post/summer_reading/</link>
+      <link>http://robcoleman.ca/books/summer_reading/</link>
       <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/post/summer_reading/</guid>
+      
+      <guid>http://robcoleman.ca/books/summer_reading/</guid>
       <description>Robot Proof: Higher Education in the age of Artificial Intelligence
 Joseph E. Anoun
  A short but well written glimpse into how higher ed will have to adapt given the progress of artificial intelligence and its impact on human work. Anoun mostly follows Harari on the transition of human work but is more an optimist insofar as he thinks there will still be a role for humans alongside machines in the labour market.</description>

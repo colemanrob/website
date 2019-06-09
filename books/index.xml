@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Books on Rob Coleman</title>
+    <link>http://robcoleman.ca/books/</link>
+    <description>Recent content in Books on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 09 Jun 2019 15:02:10 -0400</lastBuildDate>
+    
+	<atom:link href="http://robcoleman.ca/books/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Notes on Bayesian Statistics</title>
+      <link>http://robcoleman.ca/books/bayes/</link>
+      <pubDate>Sun, 09 Jun 2019 15:02:10 -0400</pubDate>
+      
+      <guid>http://robcoleman.ca/books/bayes/</guid>
+      <description>Sources  Student&amp;rsquo;s Guide to Bayesian Statisitcs, Ben Lambert  Part 1 Statisitical Inference  sometimes we know the process that generates data (e.g. coin-flip) and so calculating probability is straightforward. when we don&amp;rsquo;t have perfect knowledge of the process; it is the goal of statistical inference to derive estimates of unknown characteristics or parameters of these data-generating mechanisms. Bayesians start with what is known - the data - and make probabilistic assumptions about the underlying process that generates the data.</description>
+    </item>
+    
+    <item>
+      <title>Booklist &#43; ratings update</title>
+      <link>http://robcoleman.ca/books/books/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/books/books/</guid>
+      <description>2019    Title Author Rating     Measures of Success: React Less, Lead Better, Improve More Mark Graban ⭐️⭐️⭐️⭐️   Other Minds: The Octopus, the Sea, and the Deep Origins of Consciousness Peter Godfrey-Smith ⭐️⭐️⭐️   Bad Blood: Secrets and Lies in a Silicon Valley Startup John Carreyrou ⭐️⭐️⭐️⭐️⭐️   The Beginning of Infinity: Explanations That Transform the World David Deutsch ⭐️⭐️⭐️⭐️   Future Babble: Why Expert Predictions Fail - and Why We Believe Them Anyway Dan Gardner ⭐️⭐️   Better Now: Six Big Ideas to Improve Health Care for All Canadians Danielle Martin ⭐️⭐️⭐️⭐️   Just Mercy: A Story of Justice and Redemption Bryan Stevenson ⭐️⭐️⭐️⭐️⭐️   The Black Swan: The Impact of the Highly Improbable Nassim Nicholas Taleb ⭐️⭐️⭐️    2018    Title Author Rating     The Great Stagnation: How America Ate All the Low-Hanging Fruit of Modern History, Got Sick, and Will (Eventually) Feel Better Tyler Cowen ⭐️⭐️⭐️⭐️   Educated Tara Westover ⭐️⭐️⭐️⭐️⭐️   The Undoing Project: A Friendship That Changed Our Minds Michael Lewis ⭐️⭐️⭐️   Seven Fallen Feathers: Racism, Death, and Hard Truths in a Northern City Tanya Talaga ⭐️⭐️⭐️⭐️   Robot-Proof: Higher Education in the Age of Artificial Intelligence Joseph E.</description>
+    </item>
+    
+    <item>
+      <title>Summer reading</title>
+      <link>http://robcoleman.ca/books/summer_reading/</link>
+      <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
+      
+      <guid>http://robcoleman.ca/books/summer_reading/</guid>
+      <description>Robot Proof: Higher Education in the age of Artificial Intelligence
+Joseph E. Anoun
+ A short but well written glimpse into how higher ed will have to adapt given the progress of artificial intelligence and its impact on human work. Anoun mostly follows Harari on the transition of human work but is more an optimist insofar as he thinks there will still be a role for humans alongside machines in the labour market.</description>
+    </item>
+    
+  </channel>
+</rss>

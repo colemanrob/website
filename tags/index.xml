@@ -2,148 +2,173 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Rob Coleman</title>
-    <link>https://robcoleman.ca/tags/</link>
+    <link>http://robcoleman.ca/tags/</link>
     <description>Recent content in Tags on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
-    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
-    <lastBuildDate>Tue, 01 Jan 2019 15:50:35 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 09 Jun 2019 15:02:10 -0400</lastBuildDate>
     
-	<atom:link href="https://robcoleman.ca/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://robcoleman.ca/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Activation</title>
-      <link>https://robcoleman.ca/tags/activation/</link>
-      <pubDate>Tue, 01 Jan 2019 15:50:35 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/activation/</guid>
+      <title>bayes</title>
+      <link>http://robcoleman.ca/tags/bayes/</link>
+      <pubDate>Sun, 09 Jun 2019 15:02:10 -0400</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/bayes/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Almps</title>
-      <link>https://robcoleman.ca/tags/almps/</link>
-      <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/almps/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bigquery</title>
-      <link>https://robcoleman.ca/tags/bigquery/</link>
-      <pubDate>Sat, 23 Dec 2017 23:12:22 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/bigquery/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Books</title>
-      <link>https://robcoleman.ca/tags/books/</link>
-      <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/books/</guid>
+      <title>books</title>
+      <link>http://robcoleman.ca/tags/books/</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/books/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Census</title>
-      <link>https://robcoleman.ca/tags/census/</link>
+      <link>http://robcoleman.ca/tags/census/</link>
       <pubDate>Sun, 03 Mar 2019 10:16:59 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/census/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Commute</title>
-      <link>https://robcoleman.ca/tags/commute/</link>
-      <pubDate>Sun, 03 Mar 2019 10:16:59 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/commute/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Minimum Wage</title>
-      <link>https://robcoleman.ca/tags/minimum-wage/</link>
-      <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/minimum-wage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Moral Hazard</title>
-      <link>https://robcoleman.ca/tags/moral-hazard/</link>
-      <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/moral-hazard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Noc</title>
-      <link>https://robcoleman.ca/tags/noc/</link>
-      <pubDate>Fri, 25 Aug 2017 11:01:19 -0400</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/noc/</guid>
+      
+      <guid>http://robcoleman.ca/tags/census/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Open Data</title>
-      <link>https://robcoleman.ca/tags/open-data/</link>
+      <link>http://robcoleman.ca/tags/open-data/</link>
       <pubDate>Sun, 03 Mar 2019 10:16:59 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/open-data/</guid>
+      
+      <guid>http://robcoleman.ca/tags/open-data/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Prediction</title>
-      <link>https://robcoleman.ca/tags/prediction/</link>
-      <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/prediction/</guid>
+      <title>commute</title>
+      <link>http://robcoleman.ca/tags/commute/</link>
+      <pubDate>Sun, 03 Mar 2019 10:16:59 -0500</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/commute/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Principle Agent</title>
-      <link>https://robcoleman.ca/tags/principle-agent/</link>
+      <title>ALMPs</title>
+      <link>http://robcoleman.ca/tags/almps/</link>
       <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/principle-agent/</guid>
+      
+      <guid>http://robcoleman.ca/tags/almps/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Risk</title>
-      <link>https://robcoleman.ca/tags/risk/</link>
+      <title>moral hazard</title>
+      <link>http://robcoleman.ca/tags/moral-hazard/</link>
       <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/risk/</guid>
+      
+      <guid>http://robcoleman.ca/tags/moral-hazard/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Social Assistance</title>
-      <link>https://robcoleman.ca/tags/social-assistance/</link>
+      <title>principle-agent</title>
+      <link>http://robcoleman.ca/tags/principle-agent/</link>
+      <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/principle-agent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>risk</title>
+      <link>http://robcoleman.ca/tags/risk/</link>
+      <pubDate>Sun, 06 Jan 2019 17:52:48 -0500</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/risk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>activation</title>
+      <link>http://robcoleman.ca/tags/activation/</link>
       <pubDate>Tue, 01 Jan 2019 15:50:35 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/social-assistance/</guid>
+      
+      <guid>http://robcoleman.ca/tags/activation/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Web Scraping</title>
-      <link>https://robcoleman.ca/tags/web-scraping/</link>
+      <title>social assistance</title>
+      <link>http://robcoleman.ca/tags/social-assistance/</link>
+      <pubDate>Tue, 01 Jan 2019 15:50:35 -0500</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/social-assistance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>prediction</title>
+      <link>http://robcoleman.ca/tags/prediction/</link>
+      <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/prediction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Minimum Wage</title>
+      <link>http://robcoleman.ca/tags/minimum-wage/</link>
+      <pubDate>Sun, 18 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/minimum-wage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bigquery</title>
+      <link>http://robcoleman.ca/tags/bigquery/</link>
+      <pubDate>Sat, 23 Dec 2017 23:12:22 -0500</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/bigquery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web scraping</title>
+      <link>http://robcoleman.ca/tags/web-scraping/</link>
       <pubDate>Tue, 05 Dec 2017 22:24:48 -0500</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/tags/web-scraping/</guid>
+      
+      <guid>http://robcoleman.ca/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>noc</title>
+      <link>http://robcoleman.ca/tags/noc/</link>
+      <pubDate>Fri, 25 Aug 2017 11:01:19 -0400</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/noc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>http://robcoleman.ca/tags/config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/config/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Opengraph</title>
+      <link>http://robcoleman.ca/tags/og/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://robcoleman.ca/tags/og/</guid>
       <description></description>
     </item>
     

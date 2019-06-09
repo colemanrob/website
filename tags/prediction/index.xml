@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Prediction on Rob Coleman</title>
-    <link>https://robcoleman.ca/tags/prediction/</link>
-    <description>Recent content in Prediction on Rob Coleman</description>
+    <title>prediction on Rob Coleman</title>
+    <link>http://robcoleman.ca/tags/prediction/</link>
+    <description>Recent content in prediction on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</managingEditor>
-    <webMaster>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</webMaster>
     <lastBuildDate>Sun, 30 Sep 2018 17:25:23 -0400</lastBuildDate>
     
-	<atom:link href="https://robcoleman.ca/tags/prediction/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://robcoleman.ca/tags/prediction/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Summer reading</title>
-      <link>https://robcoleman.ca/post/summer_reading/</link>
+      <link>http://robcoleman.ca/books/summer_reading/</link>
       <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
-      <author>coleman.rob&#43;nospam@gmail.com (Rob Coleman)</author>
-      <guid>https://robcoleman.ca/post/summer_reading/</guid>
+      
+      <guid>http://robcoleman.ca/books/summer_reading/</guid>
       <description>Robot Proof: Higher Education in the age of Artificial Intelligence
 Joseph E. Anoun
  A short but well written glimpse into how higher ed will have to adapt given the progress of artificial intelligence and its impact on human work. Anoun mostly follows Harari on the transition of human work but is more an optimist insofar as he thinks there will still be a role for humans alongside machines in the labour market.</description>
