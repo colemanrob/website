@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>prediction on Rob Coleman</title>
-    <link>http://robcoleman.ca/tags/prediction/</link>
+    <link>https://robcoleman.ca/tags/prediction/</link>
     <description>Recent content in prediction on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 30 Sep 2018 17:25:23 -0400</lastBuildDate>
     
-	<atom:link href="http://robcoleman.ca/tags/prediction/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/tags/prediction/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Summer reading</title>
-      <link>http://robcoleman.ca/books/summer_reading/</link>
+      <link>https://robcoleman.ca/books/summer_reading/</link>
       <pubDate>Sun, 30 Sep 2018 17:25:23 -0400</pubDate>
       
-      <guid>http://robcoleman.ca/books/summer_reading/</guid>
+      <guid>https://robcoleman.ca/books/summer_reading/</guid>
       <description>Robot Proof: Higher Education in the age of Artificial Intelligence
 Joseph E. Anoun
  A short but well written glimpse into how higher ed will have to adapt given the progress of artificial intelligence and its impact on human work. Anoun mostly follows Harari on the transition of human work but is more an optimist insofar as he thinks there will still be a role for humans alongside machines in the labour market.</description>

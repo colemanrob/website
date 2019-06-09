@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Configuration on Rob Coleman</title>
-    <link>http://robcoleman.ca/tags/config/</link>
+    <link>https://robcoleman.ca/tags/config/</link>
     <description>Recent content in Configuration on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://robcoleman.ca/tags/config/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://robcoleman.ca/tags/config/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
