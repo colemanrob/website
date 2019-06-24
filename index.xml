@@ -28,7 +28,7 @@ I live in the Canadian north with my partner and this guy:
       <pubDate>Sun, 09 Jun 2019 15:02:10 -0400</pubDate>
       
       <guid>https://robcoleman.ca/books/bayes/</guid>
-      <description>Sources  Student&amp;rsquo;s Guide to Bayesian Statisitcs, Ben Lambert  Part 1 Statisitical Inference  sometimes we know the process that generates data (e.g. coin-flip) and so calculating probability is straightforward. when we don&amp;rsquo;t have perfect knowledge of the process; it is the goal of statistical inference to derive estimates of unknown characteristics or parameters of these data-generating mechanisms. Bayesians start with what is known - the data - and make probabilistic assumptions about the underlying process that generates the data.</description>
+      <description>Sources  Student&amp;rsquo;s Guide to Bayesian Statisitcs, Ben Lambert Statistical Rethinking, Richard McElreath Probability Theory: The Logic of Science, E.T. Jaynes  Part 1 Statistical Inference  sometimes we know the process that generates data (e.g. coin-flip) and so calculating probability is straightforward. when we don&amp;rsquo;t have perfect knowledge of the process; it is the goal of statistical inference to derive estimates of unknown characteristics or parameters of these data-generating mechanisms.</description>
     </item>
     
     <item>
