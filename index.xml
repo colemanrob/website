@@ -5,7 +5,7 @@
     <link>https://robcoleman.ca/</link>
     <description>Recent content in Home on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 09 Jun 2019 15:02:10 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,16 @@
 I work in government at the intersection of data science and active labour market policy. I studied political science and economics. Now I spend a lot of time analyzing data using #rstats and building things on the web.
 I live in the Canadian north with my partner and this guy:
    View this post on Instagram        Barn yard!</description>
+    </item>
+    
+    <item>
+      <title>Notes on employment barriers</title>
+      <link>https://robcoleman.ca/notes/emp-barriers/</link>
+      <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://robcoleman.ca/notes/emp-barriers/</guid>
+      <description>Rodrigo Fernandezi, Herwig Immervolli, Daniele Pacificoi and Céline Thévenoti, 2016
+ this research advances new methods to categorize employment barriers among jobseekers so as to design appropriately tailored activation responses across policy and institutional domains. little is known about specific employment barriers at the individual level, instead broad proxies are used to describe populations (NEET, older workers etc) instead the authors try a bottom up approach by categorizing and measuring employment barriers using latest class analysis (LDA), a clustering method, the authors find more useful groups of jobseekers who share common employment barriers by analyzing the European Union Statisitcs on Income and Living Conditions (EU SILC) available here  Types of Employment Barriers  lack of work-relateed capabilities  a range of factors that may limit an individuals&amp;rsquo; capacity to perform a specific task (e.</description>
     </item>
     
     <item>

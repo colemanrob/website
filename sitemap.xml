@@ -4,17 +4,17 @@
   
   <url>
     <loc>https://robcoleman.ca/</loc>
-    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/notes/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/post/</loc>
     <lastmod>2019-03-03T10:16:59-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/notes/</loc>
-    <lastmod>2019-01-06T17:52:48-05:00</lastmod>
   </url>
   
   <url>
@@ -27,14 +27,37 @@
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/books/bayes/</loc>
-    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
+    <loc>https://robcoleman.ca/tags/almps/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/notes/emp-barriers/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/tags/</loc>
-    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/activation/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/barriers/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/books/bayes/</loc>
+    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
   </url>
   
   <url>
@@ -66,20 +89,14 @@
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/commute/</loc>
-    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://robcoleman.ca/tags/open-data/</loc>
     <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/almps/</loc>
-    <lastmod>2019-01-06T17:52:48-05:00</lastmod>
+    <loc>https://robcoleman.ca/tags/commute/</loc>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -109,12 +126,6 @@
   <url>
     <loc>https://robcoleman.ca/notes/whatworks/</loc>
     <lastmod>2019-01-01T15:50:35-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/tags/activation/</loc>
-    <lastmod>2019-01-01T15:50:35-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

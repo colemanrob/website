@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>barriers on Rob Coleman</title>
+    <link>https://robcoleman.ca/tags/barriers/</link>
+    <description>Recent content in barriers on Rob Coleman</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://robcoleman.ca/tags/barriers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Notes on employment barriers</title>
+      <link>https://robcoleman.ca/notes/emp-barriers/</link>
+      <pubDate>Sun, 04 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://robcoleman.ca/notes/emp-barriers/</guid>
+      <description>Rodrigo Fernandezi, Herwig Immervolli, Daniele Pacificoi and Céline Thévenoti, 2016
+ this research advances new methods to categorize employment barriers among jobseekers so as to design appropriately tailored activation responses across policy and institutional domains. little is known about specific employment barriers at the individual level, instead broad proxies are used to describe populations (NEET, older workers etc) instead the authors try a bottom up approach by categorizing and measuring employment barriers using latest class analysis (LDA), a clustering method, the authors find more useful groups of jobseekers who share common employment barriers by analyzing the European Union Statisitcs on Income and Living Conditions (EU SILC) available here  Types of Employment Barriers  lack of work-relateed capabilities  a range of factors that may limit an individuals&amp;rsquo; capacity to perform a specific task (e.</description>
+    </item>
+    
+  </channel>
+</rss>
