@@ -5,10 +5,20 @@
     <link>https://robcoleman.ca/post/</link>
     <description>Recent content in Code on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 03 Mar 2019 10:16:59 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 16:59:04 -0400</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notes on fuzzy matching</title>
+      <link>https://robcoleman.ca/post/fuzzy/</link>
+      <pubDate>Sat, 05 Oct 2019 16:59:04 -0400</pubDate>
+      
+      <guid>https://robcoleman.ca/post/fuzzy/</guid>
+      <description>Recently had the pleasure of fuzzy matching two datasets that included first and last name and date of birth. Here are some notes:
+ fuzzyjoin package - great functions that do most of the heavy lifting string metrics - there are a lot of ways to measure the difference in strings, selecting a metric depends on the problem  Toy Example library(tidyverse) library(fuzzyjoin) Create our list of names and dobs.</description>
+    </item>
     
     <item>
       <title>Analyzing Commuting Patterns in Ontario</title>

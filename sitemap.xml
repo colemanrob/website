@@ -4,17 +4,17 @@
   
   <url>
     <loc>https://robcoleman.ca/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2019-10-05T16:59:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/post/</loc>
+    <lastmod>2019-10-05T16:59:04-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/notes/</loc>
     <lastmod>2019-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/post/</loc>
-    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
   </url>
   
   <url>
@@ -27,9 +27,23 @@
   </url>
   
   <url>
+    <loc>https://robcoleman.ca/post/fuzzy/</loc>
+    <lastmod>2019-10-05T16:59:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/activation/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://robcoleman.ca/tags/almps/</loc>
     <lastmod>2019-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/barriers/</loc>
+    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -40,30 +54,16 @@
   <url>
     <loc>https://robcoleman.ca/tags/</loc>
     <lastmod>2019-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/tags/activation/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/tags/barriers/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/books/bayes/</loc>
-    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/tags/bayes/</loc>
     <lastmod>2019-06-09T15:02:10-04:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/books/bayes/</loc>
+    <lastmod>2019-06-09T15:02:10-04:00</lastmod>
   </url>
   
   <url>
@@ -74,7 +74,6 @@
   <url>
     <loc>https://robcoleman.ca/tags/books/</loc>
     <lastmod>2019-04-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -85,19 +84,21 @@
   <url>
     <loc>https://robcoleman.ca/tags/census/</loc>
     <lastmod>2019-03-03T10:16:59-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://robcoleman.ca/tags/open-data/</loc>
-    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/tags/commute/</loc>
     <lastmod>2019-03-03T10:16:59-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/open-data/</loc>
+    <lastmod>2019-03-03T10:16:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/moral-hazard/</loc>
+    <lastmod>2019-01-06T17:52:48-05:00</lastmod>
   </url>
   
   <url>
@@ -106,21 +107,13 @@
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/moral-hazard/</loc>
-    <lastmod>2019-01-06T17:52:48-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://robcoleman.ca/tags/principle-agent/</loc>
     <lastmod>2019-01-06T17:52:48-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/tags/risk/</loc>
     <lastmod>2019-01-06T17:52:48-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -131,7 +124,6 @@
   <url>
     <loc>https://robcoleman.ca/tags/social-assistance/</loc>
     <lastmod>2019-01-01T15:50:35-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -140,20 +132,18 @@
   </url>
   
   <url>
+    <loc>https://robcoleman.ca/tags/prediction/</loc>
+    <lastmod>2018-09-30T17:25:23-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://robcoleman.ca/books/summer_reading/</loc>
     <lastmod>2018-09-30T17:25:23-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/prediction/</loc>
-    <lastmod>2018-09-30T17:25:23-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://robcoleman.ca/tags/minimum-wage/</loc>
     <lastmod>2018-03-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -167,14 +157,13 @@
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/post/bigquery/</loc>
+    <loc>https://robcoleman.ca/tags/bigquery/</loc>
     <lastmod>2017-12-23T23:12:22-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/bigquery/</loc>
+    <loc>https://robcoleman.ca/post/bigquery/</loc>
     <lastmod>2017-12-23T23:12:22-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -190,7 +179,11 @@
   <url>
     <loc>https://robcoleman.ca/tags/web-scraping/</loc>
     <lastmod>2017-12-05T22:24:48-05:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://robcoleman.ca/tags/noc/</loc>
+    <lastmod>2017-08-25T11:01:19-04:00</lastmod>
   </url>
   
   <url>
@@ -199,18 +192,11 @@
   </url>
   
   <url>
-    <loc>https://robcoleman.ca/tags/noc/</loc>
-    <lastmod>2017-08-25T11:01:19-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://robcoleman.ca/authors/</loc>
   </url>
   
   <url>
     <loc>https://robcoleman.ca/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -223,7 +209,6 @@
   
   <url>
     <loc>https://robcoleman.ca/page/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -232,7 +217,6 @@
   
   <url>
     <loc>https://robcoleman.ca/series/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

@@ -5,7 +5,7 @@
     <link>https://robcoleman.ca/</link>
     <description>Recent content in Home on Rob Coleman</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 16:59:04 -0400</lastBuildDate>
     
 	<atom:link href="https://robcoleman.ca/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,16 @@
 I work in government at the intersection of data science and active labour market policy. I studied political science and economics. Now I spend a lot of time analyzing data using #rstats and building things on the web.
 I live in the Canadian north with my partner and this guy:
    View this post on Instagram        Barn yard!</description>
+    </item>
+    
+    <item>
+      <title>Notes on fuzzy matching</title>
+      <link>https://robcoleman.ca/post/fuzzy/</link>
+      <pubDate>Sat, 05 Oct 2019 16:59:04 -0400</pubDate>
+      
+      <guid>https://robcoleman.ca/post/fuzzy/</guid>
+      <description>Recently had the pleasure of fuzzy matching two datasets that included first and last name and date of birth. Here are some notes:
+ fuzzyjoin package - great functions that do most of the heavy lifting string metrics - there are a lot of ways to measure the difference in strings, selecting a metric depends on the problem  Toy Example library(tidyverse) library(fuzzyjoin) Create our list of names and dobs.</description>
     </item>
     
     <item>
