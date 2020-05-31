@@ -63,11 +63,6 @@
   </url>
   
   <url>
-    <loc>/notes/writing-technical-content/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication-type/3/</loc>
     <lastmod>2020-05-17T14:20:42-04:00</lastmod>
   </url>
@@ -113,11 +108,6 @@
   </url>
   
   <url>
-    <loc>/notes/jupyter/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/slides/</loc>
     <lastmod>2020-05-17T14:20:42-04:00</lastmod>
   </url>
@@ -148,36 +138,6 @@
   </url>
   
   <url>
-    <loc>/tag/academic/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/notes/getting-started/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/demo/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/%E5%BC%80%E6%BA%90/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/publication-type/2/</loc>
     <lastmod>2020-05-17T14:20:42-04:00</lastmod>
   </url>
@@ -189,31 +149,6 @@
   
   <url>
     <loc>/author/robert-ford/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/notes/2015-07-23-r-rmarkdown/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/plot/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/r-markdown/</loc>
-    <lastmod>2020-05-17T14:20:42-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/regression/</loc>
     <lastmod>2020-05-17T14:20:42-04:00</lastmod>
   </url>
   
