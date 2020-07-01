@@ -39,12 +39,22 @@
   
   <url>
     <loc>/code/</loc>
-    <lastmod>2020-06-07T16:11:23-04:00</lastmod>
+    <lastmod>2020-06-28T15:48:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/code/making-tables/</loc>
+    <lastmod>2020-06-28T15:48:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/other/</loc>
+    <lastmod>2020-06-28T15:48:52-04:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2020-06-07T16:11:23-04:00</lastmod>
+    <lastmod>2020-06-28T15:48:52-04:00</lastmod>
   </url>
   
   <url>
@@ -74,11 +84,6 @@
   
   <url>
     <loc>/code/notes-on-fuzzy-matching/</loc>
-    <lastmod>2019-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/other/</loc>
     <lastmod>2019-10-05T00:00:00+00:00</lastmod>
   </url>
   
