@@ -23,6 +23,7 @@
 &lt;a href=&#34;#add_count&#34;&gt;add_count&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;a href=&#34;#crossing&#34;&gt;crossing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Get data from tidytues
 
@@ -310,6 +311,7 @@ cocktails &amp;lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rford
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id=&#34;across&#34;&gt;&lt;code&gt;across&lt;/code&gt;&lt;/h1&gt;
 </description>
     </item>
     

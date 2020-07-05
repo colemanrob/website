@@ -27,11 +27,10 @@
   
     
   
-  <meta name="description" content="The following is a list of functions that are super useful in the tidyverse that help solve a wide range of problems:
-  add_count  crossing   # Get data from tidytues library(tidyverse) cocktails &lt;- readr::read_csv(&#39;https://raw.">
+  <meta name="description" content="Previously I took a look at the gt package. Now I’m seeing what I can make of reactables another interesting way to generate html tables.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/code/dplyr-tricks/">
+  <link rel="alternate" hreflang="en-us" href="/code/making-tables-again/">
 
   
 
@@ -256,7 +255,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hudbb411c2d94366f168d6aa78f52f5e7d_25002_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hudbb411c2d94366f168d6aa78f52f5e7d_25002_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/code/dplyr-tricks/">
+  <link rel="canonical" href="/code/making-tables-again/">
 
   
   
@@ -275,16 +274,15 @@
   <meta property="twitter:creator" content="@coleman">
   
   <meta property="og:site_name" content="">
-  <meta property="og:url" content="/code/dplyr-tricks/">
-  <meta property="og:title" content="Tidyverse tricks | ">
-  <meta property="og:description" content="The following is a list of functions that are super useful in the tidyverse that help solve a wide range of problems:
-  add_count  crossing   # Get data from tidytues library(tidyverse) cocktails &lt;- readr::read_csv(&#39;https://raw."><meta property="og:image" content="/images/icon_hudbb411c2d94366f168d6aa78f52f5e7d_25002_512x512_fill_lanczos_center_2.png">
+  <meta property="og:url" content="/code/making-tables-again/">
+  <meta property="og:title" content="Making Tables Again | ">
+  <meta property="og:description" content="Previously I took a look at the gt package. Now I’m seeing what I can make of reactables another interesting way to generate html tables."><meta property="og:image" content="/images/icon_hudbb411c2d94366f168d6aa78f52f5e7d_25002_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hudbb411c2d94366f168d6aa78f52f5e7d_25002_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-06-07T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-07-05T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-06-07T16:11:23-04:00">
+    <meta property="article:modified_time" content="2020-07-05T17:02:19-04:00">
   
 
   
@@ -333,7 +331,7 @@
 
 
 
-  <title>Tidyverse tricks | </title>
+  <title>Making Tables Again | </title>
 
 </head>
 
@@ -578,7 +576,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>Tidyverse tricks</h1>
+  <h1>Making Tables Again</h1>
 
   
 
@@ -599,7 +597,7 @@
           Last updated on
       
     
-    Jun 7, 2020
+    Jul 5, 2020
   </span>
   
 
@@ -639,301 +637,104 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>The following is a list of functions that are super useful in the tidyverse that help solve a wide range of problems:</p>
-<ul>
-<li>
-<a href="#add_count">add_count</a></li>
-<li>
-<a href="#crossing">crossing</a></li>
-<li></li>
-</ul>
-<pre><code class="language-r"># Get data from tidytues
+      
+<script src="/rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="/rmarkdown-libs/react/react.min.js"></script>
+<script src="/rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="/rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/reactable-binding/reactable.js"></script>
 
-library(tidyverse)
-cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/cocktails.csv')
+
+<p>Previously I took a look at the <code>gt</code> package. Now I’m seeing what I can make of <code>reactables</code> another interesting way to generate html tables. I’ll be using the latest tidytues dataset on x-men!</p>
+<p>Load in the data</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre class="r"><code>character_visualization &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-06-30/character_visualization.csv&#39;)</code></pre>
+<p>Make a table. I’ll note I’m not digging too deep into the x-men content here; I’m just looking for an easy table structure.</p>
+<pre class="r"><code>top_speech &lt;- character_visualization %&gt;% 
+  filter(!(character %in% c(&quot;Editor narration&quot;, &quot;Omnipresent narration&quot;))) %&gt;% 
+  group_by(character) %&gt;% 
+  summarize(across(speech:depicted, sum)) %&gt;% 
+  slice_max(order_by = speech, n = 15) %&gt;% 
+  separate(character, into = c(&quot;hero&quot;, &quot;real_name&quot;), sep = &quot; = &quot;) %&gt;% 
+  mutate(pct_speech = speech/sum(speech)) %&gt;% 
+  arrange(desc(pct_speech)) %&gt;% 
+  select(-real_name) %&gt;% 
+  select(hero, pct_speech, everything()) %&gt;% 
+  mutate(pct_speech = round(pct_speech, 3))</code></pre>
+<p>I added this css after the fact.</p>
+<pre class="css"><code>
+.x-men {
+  margin: 0 auto;
+  width: 750px;
+  font-family: Karla, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
 </code></pre>
-<h1 id="add_count"><code>add_count</code></h1>
-<p>adds a count based on the variable supplied.  Equivalent to group_by, summarize, ungroup.</p>
-<pre><code class="language-r">cocktails %&gt;% 
-  add_count(drink) %&gt;% 
-  filter(n &gt;= 12) %&gt;% 
-  knitr::kable()
-</code></pre>
-<table>
-<thead>
-<tr>
-<th align="right">row_id</th>
-<th align="left">drink</th>
-<th align="left">date_modified</th>
-<th align="right">id_drink</th>
-<th align="left">alcoholic</th>
-<th align="left">category</th>
-<th align="left">drink_thumb</th>
-<th align="left">glass</th>
-<th align="left">iba</th>
-<th align="left">video</th>
-<th align="right">ingredient_number</th>
-<th align="left">ingredient</th>
-<th align="left">measure</th>
-<th align="right">n</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="left">Angelica root</td>
-<td align="left">3 tblsp chopped</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">10</td>
-<td align="left">Water</td>
-<td align="left">1/4 cup</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">11</td>
-<td align="left">Food coloring</td>
-<td align="left">1 drop yellow</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">12</td>
-<td align="left">Food coloring</td>
-<td align="left">1 drop green</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">2</td>
-<td align="left">Almond</td>
-<td align="left">1 tblsp chopped</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">3</td>
-<td align="left">Allspice</td>
-<td align="left">1 cracked</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">4</td>
-<td align="left">Cinnamon</td>
-<td align="left">1 one-inch</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">5</td>
-<td align="left">Anise</td>
-<td align="left">3-6 crushed</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">6</td>
-<td align="left">Coriander</td>
-<td align="left">1/8 tsp powdered</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">7</td>
-<td align="left">Marjoram leaves</td>
-<td align="left">1 tblsp fresh chopped</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">8</td>
-<td align="left">Vodka</td>
-<td align="left">1.5 cup</td>
-<td align="right">12</td>
-</tr>
-<tr>
-<td align="right">88</td>
-<td align="left">Angelica Liqueur</td>
-<td align="left">2016-08-31 19:21:12</td>
-<td align="right">12794</td>
-<td align="left">Alcoholic</td>
-<td align="left">Homemade Liqueur</td>
-<td align="left"><a href="http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg">http://www.thecocktaildb.com/images/media/drink/yuurps1472667672.jpg</a></td>
-<td align="left">Collins Glass</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">9</td>
-<td align="left">Sugar</td>
-<td align="left">1/2 cup granulated</td>
-<td align="right">12</td>
-</tr>
-</tbody>
-</table>
-<h1 id="crossing"><code>crossing</code></h1>
-<p>generates all possible combinations of variables (like expand.grid, but returns a dataframe)</p>
-<pre><code class="language-r">crossing(
-  a = 1:2,
-  b = c(&quot;a&quot;, &quot;b&quot;),
-  c = c(&quot;x&quot;, &quot;y&quot;)
-) %&gt;% 
-  knitr::kable()
-</code></pre>
-<table>
-<thead>
-<tr>
-<th align="right">a</th>
-<th align="left">b</th>
-<th align="left">c</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">1</td>
-<td align="left">a</td>
-<td align="left">x</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="left">a</td>
-<td align="left">y</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="left">b</td>
-<td align="left">x</td>
-</tr>
-<tr>
-<td align="right">1</td>
-<td align="left">b</td>
-<td align="left">y</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">a</td>
-<td align="left">x</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">a</td>
-<td align="left">y</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">b</td>
-<td align="left">x</td>
-</tr>
-<tr>
-<td align="right">2</td>
-<td align="left">b</td>
-<td align="left">y</td>
-</tr>
-</tbody>
-</table>
-<h1 id="across"><code>across</code></h1>
+<style type="text/css">
+
+.x-men {
+  margin: 0 auto;
+  width: 750px;
+  font-family: Karla, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+</style>
+<p>Render the table</p>
+<pre class="r"><code>library(reactable)
+library(htmltools)
+
+
+# Render a bar chart with a label on the left
+bar_chart &lt;- function(label, 
+                      width = &quot;100%&quot;, 
+                      height = &quot;14px&quot;, 
+                      fill = &quot;#00bfc4&quot;, 
+                      background = NULL) {
+  bar &lt;- div(style = list(background = fill, width = width, height = height))
+  chart &lt;- div(style = list(flexGrow = 1, marginLeft = &quot;6px&quot;, background = background), bar)
+  div(style = list(display = &quot;flex&quot;, alignItems = &quot;center&quot;), label, chart)
+}
+
+col_groups = c(&quot;speech&quot;, &quot;thought&quot;, &quot;narrative&quot;, &quot;depicted&quot;)
+
+reactable(top_speech,
+          compact = TRUE,
+          class = &quot;x-men&quot;,
+          defaultSorted = &quot;pct_speech&quot;,
+          highlight = TRUE,
+          defaultColDef = colDef(headerClass = &quot;header&quot;, align = &quot;left&quot;),
+          columnGroups = list(
+            colGroup(name = &quot;Representation Type&quot;, columns = col_groups)
+          ),
+          columns = list(
+            hero = colDef(name = &quot;X-Men Hero&quot;,
+                        minWidth = 170,
+                        style = list(fontWeight = 500)),
+            speech = colDef(name = &quot;Speech&quot;,
+                            format = colFormat(separators = TRUE)),
+            thought = colDef(name = &quot;Thought&quot;,
+                             format = colFormat(separators = TRUE)),
+            narrative = colDef(name = &quot;Narrative&quot;,
+                               format = colFormat(separators = TRUE)),
+            depicted = colDef(name = &quot;Depicted&quot;,
+                              format = colFormat(separators = TRUE)),
+            pct_speech = colDef(
+              name = &quot;Proportion of Speech&quot;,
+              minWidth = 150,
+              defaultSortOrder = &quot;desc&quot;,
+              cell = function(value) {
+              value &lt;- paste0(format(value * 100, nsmall = 1), &quot;%&quot;)
+              value &lt;- format(value, width = 5, justify = &quot;right&quot;)
+              bar_chart(value, width = value, fill = &quot;#fc5185&quot;, background = &quot;#e1e1e1&quot;)
+            },
+            align = &quot;left&quot;,
+            style = list(fontFamily = &quot;monospace&quot;, whiteSpace = &quot;pre&quot;)
+          )))</code></pre>
+<div id="htmlwidget-1" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"hero":["Wolverine","Storm","Cyclops","Colossus","Rogue","Ariel/Sprite/Shadowcat","Nightcrawler","Psylocke","Professor X","Marvel Girl/Phoenix","Havok","Dazzler","Forge","Magneto","Phoenix(2)"],"pct_speech":[0.157,0.152,0.089,0.078,0.078,0.073,0.064,0.05,0.049,0.041,0.039,0.038,0.035,0.028,0.028],"speech":[3640,3517,2052,1800,1800,1690,1492,1163,1128,957,902,875,818,651,651],"thought":[532,1900,729,461,611,737,441,159,269,195,238,565,131,74,469],"narrative":[352,99,193,6,49,66,6,109,175,2,172,5,118,176,40],"depicted":[3537,4169,2223,2712,1603,1714,1839,993,1095,1012,779,896,588,552,680]},"columns":[{"accessor":"hero","name":"X-Men Hero","type":"character","align":"left","headerClassName":"header","minWidth":170,"style":{"fontWeight":500}},{"accessor":"pct_speech","name":"Proportion of Speech","type":"numeric","align":"left","headerClassName":"header","defaultSortDesc":true,"cell":[{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":["15.7%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":"15.7%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":["15.2%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":"15.2%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 8.9%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 8.9%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 7.8%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 7.8%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 7.8%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 7.8%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 7.3%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 7.3%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 6.4%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 6.4%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 5.0%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 5.0%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 4.9%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 4.9%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 4.1%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 4.1%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 3.9%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 3.9%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 3.8%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 3.8%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 3.5%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 3.5%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 2.8%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 2.8%","height":"14px"}},"children":[]}]}]},{"name":"div","attribs":{"style":{"display":"flex","alignItems":"center"}},"children":[" 2.8%",{"name":"div","attribs":{"style":{"flexGrow":1,"marginLeft":"6px","background":"#e1e1e1"}},"children":[{"name":"div","attribs":{"style":{"background":"#fc5185","width":" 2.8%","height":"14px"}},"children":[]}]}]}],"minWidth":150,"style":{"fontFamily":"monospace","whiteSpace":"pre"}},{"accessor":"speech","name":"Speech","type":"numeric","align":"left","headerClassName":"header","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"accessor":"thought","name":"Thought","type":"numeric","align":"left","headerClassName":"header","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"accessor":"narrative","name":"Narrative","type":"numeric","align":"left","headerClassName":"header","format":{"cell":{"separators":true},"aggregated":{"separators":true}}},{"accessor":"depicted","name":"Depicted","type":"numeric","align":"left","headerClassName":"header","format":{"cell":{"separators":true},"aggregated":{"separators":true}}}],"columnGroups":[{"name":"Representation Type","columns":["speech","thought","narrative","depicted"]}],"defaultSorted":[{"id":"pct_speech","desc":true}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"compact":true,"className":"x-men","dataKey":"768eefd78e4edb491da5b639010dafbb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p>It’s super buggy using <code>blogdown</code>. At first I couldn’t render the table using a .Rmarkdown file. Once I switched to an .Rmd it seemed to work. Seems like a great table making library.</p>
 
     </div>
 
@@ -945,7 +746,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/tidyverse/">Tidyverse</a>
+  <a class="badge badge-light" href="/tag/other/">Other</a>
   
 </div>
 
@@ -962,7 +763,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/code/dplyr-tricks/&amp;text=Tidyverse%20tricks" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/code/making-tables-again/&amp;text=Making%20Tables%20Again" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -975,7 +776,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/code/dplyr-tricks/&amp;t=Tidyverse%20tricks" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/code/making-tables-again/&amp;t=Making%20Tables%20Again" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -988,7 +789,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="mailto:?subject=Tidyverse%20tricks&amp;body=/code/dplyr-tricks/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Making%20Tables%20Again&amp;body=/code/making-tables-again/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1001,7 +802,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/code/dplyr-tricks/&amp;title=Tidyverse%20tricks" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/code/making-tables-again/&amp;title=Making%20Tables%20Again" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1014,7 +815,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=Tidyverse%20tricks%20/code/dplyr-tricks/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=Making%20Tables%20Again%20/code/making-tables-again/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1027,7 +828,7 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/code/dplyr-tricks/&amp;title=Tidyverse%20tricks" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/code/making-tables-again/&amp;title=Making%20Tables%20Again" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1144,15 +945,8 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
   
   
   <div class="post-nav-item">
-    <div class="meta-nav">Next</div>
-    <a href="/code/making-tables/" rel="next">Making Tables</a>
-  </div>
-  
-  
-  
-  <div class="post-nav-item">
     <div class="meta-nav">Previous</div>
-    <a href="/code/type-convert/" rel="prev">Type Convert</a>
+    <a href="/code/making-tables/" rel="prev">Making Tables</a>
   </div>
   
 </div>
@@ -1167,7 +961,9 @@ cocktails &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascien
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/code/type-convert/">Type Convert</a></li>
+      <li><a href="/code/making-tables/">Making Tables</a></li>
+      
+      <li><a href="/code/notes-on-fuzzy-matching/">Notes on fuzzy matching</a></li>
       
     </ul>
   </div>
