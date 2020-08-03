@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Other | </title>
+    <title>Other | Rob Coleman</title>
     <link>/tag/other/</link>
       <atom:link href="/tag/other/index.xml" rel="self" type="application/rss+xml" />
     <description>Other</description>
@@ -14,9 +14,9 @@
     
     <item>
       <title>Making Tables Again</title>
-      <link>/code/making-tables-again/</link>
+      <link>/post/making-tables-again/</link>
       <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>/code/making-tables-again/</guid>
+      <guid>/post/making-tables-again/</guid>
       <description>
 &lt;script src=&#34;/rmarkdown-libs/core-js/shim.min.js&#34;&gt;&lt;/script&gt;
 &lt;script src=&#34;/rmarkdown-libs/react/react.min.js&#34;&gt;&lt;/script&gt;
@@ -120,9 +120,9 @@ reactable(top_speech,
     
     <item>
       <title>Making Tables</title>
-      <link>/code/making-tables/</link>
+      <link>/post/making-tables/</link>
       <pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/code/making-tables/</guid>
+      <guid>/post/making-tables/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve wanted to dive into the 
 &lt;a href=&#34;https://gt.rstudio.com/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;gt&lt;/a&gt; package for making tables for awhile now.  Here is a quick example of a table using data from a tidy tuesday a few weeks back.  It seems my hugo theme is over-writing some of the table css, I&amp;rsquo;ll have to check that out.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
@@ -810,9 +810,9 @@ font-size: 65%;
     
     <item>
       <title>Notes on fuzzy matching</title>
-      <link>/code/notes-on-fuzzy-matching/</link>
+      <link>/post/notes-on-fuzzy-matching/</link>
       <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>/code/notes-on-fuzzy-matching/</guid>
+      <guid>/post/notes-on-fuzzy-matching/</guid>
       <description>&lt;p&gt;Recently had the pleasure of fuzzy matching two datasets that included first and last name and date of birth.  Here are some notes:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
