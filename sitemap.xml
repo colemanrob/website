@@ -38,22 +38,32 @@
   </url>
   
   <url>
+    <loc>/tag/labour-market-policy/</loc>
+    <lastmod>2020-10-11T10:28:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/caseworker/</loc>
+    <lastmod>2020-10-11T10:28:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-10-11T10:28:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-10-11T10:28:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tag/coding/</loc>
     <lastmod>2020-07-05T17:02:19-04:00</lastmod>
   </url>
   
   <url>
     <loc>/post/making-tables-again/</loc>
-    <lastmod>2020-07-05T17:02:19-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-07-05T17:02:19-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-07-05T17:02:19-04:00</lastmod>
   </url>
   
@@ -70,11 +80,6 @@
   <url>
     <loc>/post/dplyr-tricks/</loc>
     <lastmod>2020-06-07T16:11:23-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/labour-market-policy/</loc>
-    <lastmod>2020-06-06T19:03:51-04:00</lastmod>
   </url>
   
   <url>
